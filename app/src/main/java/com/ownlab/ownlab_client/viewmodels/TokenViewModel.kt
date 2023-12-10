@@ -31,7 +31,7 @@ class TokenViewModel @Inject constructor (private val tokenManager: Manager): Vi
         }
     }
 
-    fun deleteToken() {
+    fun delete() {
         viewModelScope.launch(Dispatchers.IO) {
             tokenManager.delete()
         }
