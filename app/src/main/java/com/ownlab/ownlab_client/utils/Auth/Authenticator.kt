@@ -45,7 +45,7 @@ class AuthAuthenticator @Inject constructor (private val tokenManager: Manager):
 
         val httpClient = OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://ip_address:port_number/")
+            .baseUrl("http://221.159.102.58:3002/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(httpClient)
             .build()
