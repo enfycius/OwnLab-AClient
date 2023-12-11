@@ -7,11 +7,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.ownlab.ownlab_client.R
 import com.ownlab.ownlab_client.databinding.FragmentMainBinding
 import com.ownlab.ownlab_client.models.Auth
+import com.ownlab.ownlab_client.utils.ApiResponse
+import com.ownlab.ownlab_client.viewmodels.MainViewModel
 import com.ownlab.ownlab_client.viewmodels.TokenViewModel
 import com.ownlab.ownlab_client.viewmodels.`interface`.CoroutinesErrorHandler
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +25,7 @@ class MainFragment: Fragment() {
     private val binding get() = _binding!!
 
     private val tokenViewModel: TokenViewModel by activityViewModels()
+    private val mainViewModel: MainViewModel by viewModels()
 
     private lateinit var navController: NavController
     private var token: String? = null
@@ -43,8 +47,23 @@ class MainFragment: Fragment() {
                 navController.navigate(R.id.main_2_login)
         }
 
+        mainViewModel.userResponse.observe(viewLifecycleOwner) {
+            when(it) {
+                is ApiResponse.Failure -> Toast.makeText(activity, "Failed", Toast.LENGTH_LONG).show()
+                is ApiResponse.Success -> Toast.makeText(activity, "${it.data.email}", Toast.LENGTH_LONG).show()
+            }
+        }
+
         binding.logoutBtn.setOnClickListener {
             tokenViewModel.delete()
+        }
+
+        binding.getUserBtn.setOnClickListener {
+            mainViewModel.getUser(token, object: CoroutinesErrorHandler {
+                override fun onError(message: String) {
+                    Toast.makeText(activity, "Error $message", Toast.LENGTH_LONG).show()
+                }
+            })
         }
     }
 }
