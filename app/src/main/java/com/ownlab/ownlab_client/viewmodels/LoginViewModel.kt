@@ -10,11 +10,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor (private val authRepository: AuthRepository): BaseViewModel() {
+class LoginViewModel @Inject constructor (private val authRepo: AuthRepository): BaseViewModel() {
     private var _loginResponse = MutableLiveData<ApiResponse<LoginResponse>>()
     val loginResponse = _loginResponse
 
     fun login(auth: Auth, coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(loginResponse, coroutinesErrorHandler) {
-        authRepository.login(auth)
+        authRepo.login(auth)
     }
 }
