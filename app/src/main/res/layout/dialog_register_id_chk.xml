@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:layout_margin="5dp"
     android:weightSum="10"
     android:gravity="center"
     android:orientation="vertical">
@@ -12,7 +13,14 @@
         android:id="@+id/statusMessage"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2" />
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="test"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"

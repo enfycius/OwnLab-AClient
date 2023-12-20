@@ -31,4 +31,9 @@
         app:destination="@id/loginFragment"
         app:popUpToInclusive="true" />
 
+    <action
+        android:id="@+id/register_2_login"
+        app:destination="@id/loginFragment"
+        app:popUpToInclusive="true" />
+
 </navigation>
