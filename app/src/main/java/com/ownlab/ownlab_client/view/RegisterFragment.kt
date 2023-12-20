@@ -1,7 +1,6 @@
 package com.ownlab.ownlab_client.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.ownlab.ownlab_client.R
-import com.ownlab.ownlab_client.databinding.FragmentLoginBinding
 import com.ownlab.ownlab_client.databinding.FragmentRegisterBinding
 import com.ownlab.ownlab_client.models.Id
 import com.ownlab.ownlab_client.models.Info
@@ -46,10 +44,10 @@ class RegisterFragment: Fragment() {
                     if (it.data.message == "Failed") {
                         Toast.makeText(activity, it.data.message, Toast.LENGTH_LONG).show()
 
-                        val action = RegisterFragmentDirections.register2RegisterIdChk("아이디가 이미 존재합니다.")
+                        val action = RegisterFragmentDirections.register2RegisterChk("아이디가 이미 존재합니다.")
                         navController.navigate(action)
                     } else {
-                        val action = RegisterFragmentDirections.register2RegisterIdChk("해당 아이디를 사용할 수 있습니다.")
+                        val action = RegisterFragmentDirections.register2RegisterChk("해당 아이디를 사용할 수 있습니다.")
                         navController.navigate(action)
                     }
                 }
@@ -65,7 +63,7 @@ class RegisterFragment: Fragment() {
                     if (it.data.message == "User Already Exists") {
                         Toast.makeText(activity, it.data.message, Toast.LENGTH_LONG).show()
 
-                        val action = RegisterFragmentDirections.register2RegisterIdChk("계정이 이미 존재합니다.")
+                        val action = RegisterFragmentDirections.register2RegisterChk("계정이 이미 존재합니다.")
                         navController.navigate(action)
                     } else {
                         navController.navigate(R.id.register_2_login)
@@ -93,7 +91,7 @@ class RegisterFragment: Fragment() {
             val tel: String = binding.telField.text.toString()
 
             if (password != _password) {
-                val action = RegisterFragmentDirections.register2RegisterIdChk("비밀번호가 동일하지 않습니다.")
+                val action = RegisterFragmentDirections.register2RegisterChk("비밀번호가 동일하지 않습니다.")
                 navController.navigate(action)
             } else {
                 registerViewModel.register(Info(id, password, name, tel), object: CoroutinesErrorHandler {

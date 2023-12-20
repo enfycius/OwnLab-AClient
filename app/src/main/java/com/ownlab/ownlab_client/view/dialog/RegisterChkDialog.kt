@@ -4,23 +4,19 @@ import android.content.Context
 import android.graphics.Point
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
-import com.ownlab.ownlab_client.databinding.DialogRegisterIdChkBinding
-import com.ownlab.ownlab_client.view.RegisterFragmentDirections
+import com.ownlab.ownlab_client.databinding.DialogRegisterChkBinding
 
-class RegisterIdChkDialog : DialogFragment() {
-    private var _binding: DialogRegisterIdChkBinding? = null
+class RegisterChkDialog : DialogFragment() {
+    private var _binding: DialogRegisterChkBinding? = null
     private val binding get() = _binding!!
 
-    val args: RegisterIdChkDialogArgs by navArgs()
+    val args: RegisterChkDialogArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +24,7 @@ class RegisterIdChkDialog : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = DialogRegisterIdChkBinding.inflate(inflater, container, false)
+        _binding = DialogRegisterChkBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -36,7 +32,7 @@ class RegisterIdChkDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.statusMessage.text = args.idChkMessage
+        binding.statusMessage.text = args.chkMessage
 
         binding.closeDialog.setOnClickListener {
             this.dismiss()
@@ -51,7 +47,7 @@ class RegisterIdChkDialog : DialogFragment() {
 
     override fun onResume() {
         super.onResume()
-        context?.dialogFragmentResize(this@RegisterIdChkDialog, 0.9f, 0.55f)
+        context?.dialogFragmentResize(this@RegisterChkDialog, 0.9f, 0.55f)
     }
 
     private fun Context.dialogFragmentResize(dialogFragment: DialogFragment, width: Float, height: Float) {
