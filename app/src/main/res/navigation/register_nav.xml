@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/register_nav"
+    app:startDestination="@id/registerFragment">
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.ownlab.ownlab_client.view.RegisterFragment"
+        android:label="register_fragment"
+        tools:layout="@layout/fragment_register">
+
+        <action
+            android:id="@+id/register_2_register_id_chk"
+            app:destination="@id/register_id_chk_nav"
+            app:popUpToInclusive="true">
+
+            <argument
+                android:name="idChkMessage"
+                app:argType="string"
+                android:defaultValue="" />
+
+        </action>
+
+    </fragment>
+
+    <include app:graph="@navigation/register_id_chk_nav" />
+
+</navigation>

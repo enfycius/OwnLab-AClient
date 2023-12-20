@@ -1,6 +1,8 @@
 package com.ownlab.ownlab_client.service
 
 import com.ownlab.ownlab_client.models.Auth
+import com.ownlab.ownlab_client.models.Id
+import com.ownlab.ownlab_client.models.IdChkResponse
 import com.ownlab.ownlab_client.models.LoginResponse
 import retrofit2.Response
 import retrofit2.http.Body
@@ -14,11 +16,17 @@ interface AuthApi {
         @Body auth: Auth,
     ): Response<LoginResponse>
 
+    @POST("auth/email/check")
+    suspend fun idChk(
+        @Body emailChk: Id,
+    ): Response<IdChkResponse>
 
     // The below is NOT discussed yet
     @GET("auth/")
     suspend fun refreshToken(
         @Header("") token: String
     ): Response<LoginResponse>
+
+
 
 }

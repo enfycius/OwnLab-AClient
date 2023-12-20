@@ -15,9 +15,16 @@
             android:id="@+id/login_2_main"
             app:destination="@id/main_nav"
             app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/login_2_register"
+            app:destination="@id/register_nav"
+            app:popUpToInclusive="true" />
+
     </fragment>
 
     <include app:graph="@navigation/main_nav" />
+    <include app:graph="@navigation/register_nav" />
 
     <action
         android:id="@+id/main_2_login"

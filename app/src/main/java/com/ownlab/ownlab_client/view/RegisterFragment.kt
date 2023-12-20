@@ -6,32 +6,30 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.ownlab.ownlab_client.R
 import com.ownlab.ownlab_client.databinding.FragmentLoginBinding
-import com.ownlab.ownlab_client.models.Auth
+import com.ownlab.ownlab_client.databinding.FragmentRegisterBinding
+import com.ownlab.ownlab_client.models.Id
 import com.ownlab.ownlab_client.utils.ApiResponse
 
-import com.ownlab.ownlab_client.viewmodels.LoginViewModel
-import com.ownlab.ownlab_client.viewmodels.TokenViewModel
+import com.ownlab.ownlab_client.viewmodels.RegisterViewModel
 import com.ownlab.ownlab_client.viewmodels.`interface`.CoroutinesErrorHandler
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment: Fragment() {
-    private var _binding: FragmentLoginBinding? = null
+class RegisterFragment: Fragment() {
+    private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
 
-    private val loginViewModel: LoginViewModel by viewModels()
-    private val tokenViewModel: TokenViewModel by activityViewModels()
+    private val registerViewModel: RegisterViewModel by viewModels()
 
     private lateinit var navController: NavController
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentRegisterBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -40,40 +38,29 @@ class LoginFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
-        tokenViewModel.token.observe(viewLifecycleOwner) {
-            if (it != null) {
-                Toast.makeText(activity, "Correct", Toast.LENGTH_LONG).show()
-                navController.navigate(R.id.login_2_main)
-            } else {
-                Toast.makeText(activity, "Wrong", Toast.LENGTH_LONG).show()
-            }
-        }
-
-        loginViewModel.loginResponse.observe(viewLifecycleOwner) {
+        registerViewModel.idChkResponse.observe(viewLifecycleOwner) {
             when(it) {
                 is ApiResponse.Success -> {
-                    tokenViewModel.save(it.data.token)
+                    if (it.data.message == "Failed") {
+                        Toast.makeText(activity, it.data.message, Toast.LENGTH_LONG).show()
+
+                        val action = RegisterFragmentDirections.register2RegisterIdChk("아이디가 이미 존재합니다.")
+                        navController.navigate(action)
+                    }
+
                 }
                 is ApiResponse.Failure -> {
-                    Toast.makeText(activity, "Failed", Toast.LENGTH_LONG).show()
+                    Toast.makeText(activity, "API Failed", Toast.LENGTH_LONG).show()
                 }
             }
         }
 
-        binding.loginBtn.setOnClickListener {
-            val id: String = binding.idField.text.toString()
-            val password: String = binding.passwordField.text.toString()
-
-            loginViewModel.login(Auth(id, password), object: CoroutinesErrorHandler {
+        binding.idChkBtn.setOnClickListener {
+            registerViewModel.idChk(Id(binding.idField.text.toString()), object: CoroutinesErrorHandler {
                 override fun onError(m : String) {
                     Toast.makeText(activity, "Error $m", Toast.LENGTH_LONG).show()
                 }
             })
-        }
-
-        binding.registerBtn.setOnClickListener {
-            Toast.makeText(activity, "Test", Toast.LENGTH_LONG).show()
-            navController.navigate(R.id.login_2_register)
         }
     }
 
