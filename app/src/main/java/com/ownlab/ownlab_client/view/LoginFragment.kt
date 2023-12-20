@@ -70,6 +70,11 @@ class LoginFragment: Fragment() {
                 }
             })
         }
+
+        binding.registerBtn.setOnClickListener {
+            Toast.makeText(activity, "Test", Toast.LENGTH_LONG).show()
+            navController.navigate(R.id.login_2_register)
+        }
     }
 
     override fun onDestroyView() {

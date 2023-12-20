@@ -12,7 +12,6 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.ownlab.ownlab_client.R
 import com.ownlab.ownlab_client.databinding.FragmentMainBinding
-import com.ownlab.ownlab_client.models.Auth
 import com.ownlab.ownlab_client.utils.ApiResponse
 import com.ownlab.ownlab_client.viewmodels.MainViewModel
 import com.ownlab.ownlab_client.viewmodels.TokenViewModel
