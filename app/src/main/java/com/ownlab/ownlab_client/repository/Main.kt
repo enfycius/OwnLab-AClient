@@ -9,4 +9,8 @@ class MainRepository @Inject constructor (private val mainApi: MainApi) {
     fun getUser(token: String?) = constants.apiFlow {
         mainApi.getUser(token!!)
     }
+
+    fun getSurveyItems(token: String?) = constants.apiFlow {
+        mainApi.getSurveyItems(token!!)
+    }
 }

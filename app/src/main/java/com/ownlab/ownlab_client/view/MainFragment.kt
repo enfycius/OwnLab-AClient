@@ -39,6 +39,8 @@ class MainFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
+
+
         tokenViewModel.token.observe(viewLifecycleOwner) { token ->
             this.token = token
 
@@ -53,8 +55,23 @@ class MainFragment: Fragment() {
             }
         }
 
+        mainViewModel.surveyQuestionsResponse.observe(viewLifecycleOwner) {
+            when(it) {
+                is ApiResponse.Failure -> Toast.makeText(activity, "Failed", Toast.LENGTH_LONG).show()
+                is ApiResponse.Success -> Toast.makeText(activity, "${it.data.questions[0]}", Toast.LENGTH_LONG).show()
+            }
+        }
+
         binding.logoutBtn.setOnClickListener {
             tokenViewModel.delete()
+        }
+
+        binding.getSurveyItemsBtn.setOnClickListener {
+            mainViewModel.getSurveyItems(token, object: CoroutinesErrorHandler {
+                override fun onError(message: String) {
+                    Toast.makeText(activity, "Error $message", Toast.LENGTH_LONG).show()
+                }
+            })
         }
 
         binding.getUserBtn.setOnClickListener {
