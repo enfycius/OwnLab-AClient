@@ -14,7 +14,11 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ownlab.ownlab_client.R
 import com.ownlab.ownlab_client.databinding.FragmentMainBinding
+import com.ownlab.ownlab_client.models.RadarData
+import com.ownlab.ownlab_client.models.RadarResponse
+import com.ownlab.ownlab_client.models.RadarType
 import com.ownlab.ownlab_client.models.SurveyResultRequest
+import com.ownlab.ownlab_client.models.findEnumByKey
 import com.ownlab.ownlab_client.utils.ApiResponse
 import com.ownlab.ownlab_client.view.adapter.MainAdapter
 import com.ownlab.ownlab_client.viewmodels.MainViewModel
@@ -24,6 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlin.reflect.full.memberProperties
 
 @AndroidEntryPoint
 class MainFragment: Fragment() {
@@ -90,7 +95,26 @@ class MainFragment: Fragment() {
         mainViewModel.radarResponse.observe(viewLifecycleOwner) {
             when(it) {
                 is ApiResponse.Failure -> Toast.makeText(activity, "Failed", Toast.LENGTH_LONG).show()
-                is ApiResponse.Success -> Toast.makeText(activity, "${it.data.responsibility}", Toast.LENGTH_LONG).show()
+                is ApiResponse.Success -> {
+                    val radarData: ArrayList<RadarData> = ArrayList<RadarData>()
+
+                    Toast.makeText(activity, "${it.data.responsibility}", Toast.LENGTH_LONG).show()
+
+                    CoroutineScope(Dispatchers.Main).launch {
+
+                        for (prop in RadarResponse::class.memberProperties) {
+                            val foundEnum = findEnumByKey<RadarType>(prop.name)
+
+                            if (foundEnum != null) {
+                                radarData.add(RadarData(foundEnum, prop.get(it.data).toString().toDouble().toInt()))
+                            }
+                        }
+
+                        val action = MainFragmentDirections.main2Radar(radarData.toTypedArray())
+                        navController.navigate(action)
+                    }
+                }
+
             }
         }
 
