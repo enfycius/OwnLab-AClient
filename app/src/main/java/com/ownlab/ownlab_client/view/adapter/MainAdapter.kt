@@ -1,14 +1,10 @@
 package com.ownlab.ownlab_client.view.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ownlab.ownlab_client.databinding.RecyclerviewSurveyItemBinding
 import com.ownlab.ownlab_client.models.SurveyItem
-import com.ownlab.ownlab_client.models.SurveyItemResponse
 import com.ownlab.ownlab_client.models.SurveyResult
 
 class MainAdapter(private val surveyItems: List<SurveyItem>): RecyclerView.Adapter<MainAdapter.MainViewHolder>() {

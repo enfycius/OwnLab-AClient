@@ -1,7 +1,6 @@
 package com.ownlab.ownlab_client.viewmodels
 
 import androidx.lifecycle.MutableLiveData
-import com.ownlab.ownlab_client.models.Auth
 import com.ownlab.ownlab_client.models.Id
 import com.ownlab.ownlab_client.models.IdChkResponse
 import com.ownlab.ownlab_client.models.Info
