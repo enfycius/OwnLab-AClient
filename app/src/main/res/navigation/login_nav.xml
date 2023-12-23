@@ -26,10 +26,6 @@
     <include app:graph="@navigation/main_nav" />
     <include app:graph="@navigation/register_nav" />
 
-    <action
-        android:id="@+id/main_2_login"
-        app:destination="@id/loginFragment"
-        app:popUpToInclusive="true" />
 
     <action
         android:id="@+id/register_2_login"

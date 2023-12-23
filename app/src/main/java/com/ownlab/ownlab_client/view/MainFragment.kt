@@ -14,6 +14,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ownlab.ownlab_client.R
 import com.ownlab.ownlab_client.databinding.FragmentMainBinding
+import com.ownlab.ownlab_client.models.SurveyResultRequest
 import com.ownlab.ownlab_client.utils.ApiResponse
 import com.ownlab.ownlab_client.view.adapter.MainAdapter
 import com.ownlab.ownlab_client.viewmodels.MainViewModel
@@ -53,8 +54,9 @@ class MainFragment: Fragment() {
         tokenViewModel.token.observe(viewLifecycleOwner) { token ->
             this.token = token
 
-            if (token == null)
+            if (token == null) {
                 navController.navigate(R.id.main_2_login)
+            }
         }
 
         mainViewModel.surveyQuestionsResponse.observe(viewLifecycleOwner) {
@@ -85,15 +87,46 @@ class MainFragment: Fragment() {
             }
         }
 
-        binding.submitBtn.setOnClickListener {
-            mainViewModel.getModelResults(
-                mainAdapter!!.getSurveyResults(),
-                object : CoroutinesErrorHandler {
-                    override fun onError(message: String) {
-                        Toast.makeText(activity, "Error $message", Toast.LENGTH_LONG).show()
-                    }
-                })
+        mainViewModel.radarResponse.observe(viewLifecycleOwner) {
+            when(it) {
+                is ApiResponse.Failure -> Toast.makeText(activity, "Failed", Toast.LENGTH_LONG).show()
+                is ApiResponse.Success -> Toast.makeText(activity, "${it.data.responsibility}", Toast.LENGTH_LONG).show()
+            }
         }
 
+        binding.submitBtn.setOnClickListener {
+            try {
+                mainViewModel.getModelResults(
+                    SurveyResultRequest(
+                        mainAdapter!!.getSurveyResults(),
+                        binding.workTimeField.text.toString().toInt()
+                    ), object : CoroutinesErrorHandler {
+                        override fun onError(message: String) {
+                            Toast.makeText(activity, "Error $message", Toast.LENGTH_LONG).show()
+                        }
+                    })
+
+            } catch (e: NumberFormatException) {
+                Toast.makeText(activity, "Error $e", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        tokenViewModel.delete()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        tokenViewModel.delete()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        tokenViewModel.delete()
     }
 }

@@ -1,11 +1,8 @@
 package com.ownlab.ownlab_client.service
 
-import com.ownlab.ownlab_client.models.Auth
-import com.ownlab.ownlab_client.models.ErrorResponse
-import com.ownlab.ownlab_client.models.LoginResponse
-import com.ownlab.ownlab_client.models.SurveyItem
+import com.ownlab.ownlab_client.models.RadarResponse
 import com.ownlab.ownlab_client.models.SurveyItemResponse
-import com.ownlab.ownlab_client.models.SurveyResult
+import com.ownlab.ownlab_client.models.SurveyResultRequest
 import com.ownlab.ownlab_client.models.UserResponse
 import retrofit2.Response
 import retrofit2.http.Body
@@ -21,5 +18,5 @@ interface MainApi {
     suspend fun getSurveyItems(@Header("Authorization") token: String): Response<SurveyItemResponse>
 
     @POST("model/")
-    suspend fun getModelResults(@Body surveyResults: List<SurveyResult>): Response<ErrorResponse>
+    suspend fun getModelResults(@Body surveyResults: SurveyResultRequest): Response<RadarResponse>
 }
