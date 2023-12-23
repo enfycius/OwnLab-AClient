@@ -9,6 +9,13 @@
         android:id="@+id/mainFragment"
         android:name="com.ownlab.ownlab_client.view.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main">
+
+        <action
+            android:id="@+id/main_2_login"
+            app:destination="@id/loginFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
 
 </navigation>
