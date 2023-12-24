@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/radarFragment"
         android:name="com.ownlab.ownlab_client.view.RadarFragment"
-        android:label="radar_fragment"
+        android:label="설문결과"
         tools:layout="@layout/fragment_radar">
 
         <argument

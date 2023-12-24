@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.ownlab.ownlab_client.view.MainFragment"
-        android:label="main_fragment"
+        android:label="설문조사"
         tools:layout="@layout/fragment_main">
 
         <action
