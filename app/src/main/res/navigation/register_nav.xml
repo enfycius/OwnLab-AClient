@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.ownlab.ownlab_client.view.RegisterFragment"
-        android:label="register_fragment"
+        android:label="회원가입"
         tools:layout="@layout/fragment_register">
 
         <action

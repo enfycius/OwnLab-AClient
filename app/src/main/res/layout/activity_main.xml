@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.fragment.app.FragmentContainerView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/hostFragment"
-    android:name="androidx.navigation.fragment.NavHostFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:navGraph="@navigation/login_nav"
-    app:defaultNavHost="true"
-    tools:context=".MainActivity" />
+    android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragmentToolbar"
+            android:theme="@style/ToolbarColoredBackArrow"
+            app:navigationIcon="@drawable/abc_vector_test"
+            />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/hostFragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:navGraph="@navigation/login_nav"
+            app:defaultNavHost="true"
+            tools:context=".MainActivity">
+        </androidx.fragment.app.FragmentContainerView>
+
+</LinearLayout>
