@@ -22,8 +22,8 @@
             app:popUpToInclusive="true" />
 
         <action
-            android:id="@+id/login_2_register_chk"
-            app:destination="@id/register_chk_nav"
+            android:id="@+id/any_2_register_chk"
+            app:destination="@id/chk_dialog_nav"
             app:popUpToInclusive="true">
 
             <argument
@@ -37,7 +37,7 @@
 
     <include app:graph="@navigation/main_nav" />
     <include app:graph="@navigation/register_nav" />
-    <include app:graph="@navigation/register_chk_nav" />
+    <include app:graph="@navigation/chk_dialog_nav" />
 
 
     <action

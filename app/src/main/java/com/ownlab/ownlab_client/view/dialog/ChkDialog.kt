@@ -10,13 +10,13 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.navArgs
-import com.ownlab.ownlab_client.databinding.DialogRegisterChkBinding
+import com.ownlab.ownlab_client.databinding.DialogChkBinding
 
-class RegisterChkDialog : DialogFragment() {
-    private var _binding: DialogRegisterChkBinding? = null
+class ChkDialog : DialogFragment() {
+    private var _binding: DialogChkBinding? = null
     private val binding get() = _binding!!
 
-    val args: RegisterChkDialogArgs by navArgs()
+    val args: ChkDialogArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +24,7 @@ class RegisterChkDialog : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = DialogRegisterChkBinding.inflate(inflater, container, false)
+        _binding = DialogChkBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -47,7 +47,7 @@ class RegisterChkDialog : DialogFragment() {
 
     override fun onResume() {
         super.onResume()
-        context?.dialogFragmentResize(this@RegisterChkDialog, 0.9f, 0.35f)
+        context?.dialogFragmentResize(this@ChkDialog, 0.9f, 0.35f)
     }
 
     private fun Context.dialogFragmentResize(dialogFragment: DialogFragment, width: Float, height: Float) {
