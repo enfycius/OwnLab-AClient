@@ -2,14 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/register_chk_nav"
-    app:startDestination="@id/registerChkDialog">
+    android:id="@+id/chk_dialog_nav"
+    app:startDestination="@id/chkDialog">
 
     <dialog
-        android:id="@+id/registerChkDialog"
-        android:name="com.ownlab.ownlab_client.view.dialog.RegisterChkDialog"
-        android:label="register_chk_dialog"
-        tools:layout="@layout/dialog_register_chk" >
+        android:id="@+id/chkDialog"
+        android:name="com.ownlab.ownlab_client.view.dialog.ChkDialog"
+        android:label="chk_dialog"
+        tools:layout="@layout/dialog_chk" >
 
         <argument
             android:name="chkMessage"

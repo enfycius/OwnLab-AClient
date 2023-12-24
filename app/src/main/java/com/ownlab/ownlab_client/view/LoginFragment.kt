@@ -52,7 +52,7 @@ class LoginFragment: Fragment() {
                     tokenViewModel.save(it.data.token)
                 }
                 is ApiResponse.Failure -> {
-                    val action = LoginFragmentDirections.login2RegisterChk("아이디 또는 비밀번호를 잘못 입력하셨습니다.")
+                    val action = LoginFragmentDirections.any2RegisterChk("아이디 또는 비밀번호를 잘못 입력하셨습니다.")
                     navController.navigate(action)
                 }
             }

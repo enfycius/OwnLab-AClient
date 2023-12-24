@@ -12,8 +12,8 @@
         tools:layout="@layout/fragment_register">
 
         <action
-            android:id="@+id/register_2_register_chk"
-            app:destination="@id/register_chk_nav"
+            android:id="@+id/any_2_register_chk"
+            app:destination="@id/chk_dialog_nav"
             app:popUpToInclusive="true">
 
             <argument
@@ -25,6 +25,6 @@
 
     </fragment>
 
-    <include app:graph="@navigation/register_chk_nav" />
+    <include app:graph="@navigation/chk_dialog_nav" />
 
 </navigation>
