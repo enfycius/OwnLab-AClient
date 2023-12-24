@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_register">
 
         <action
-            android:id="@+id/any_2_register_chk"
+            android:id="@+id/register_2_chk_dialog"
             app:destination="@id/chk_dialog_nav"
             app:popUpToInclusive="true">
 

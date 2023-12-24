@@ -41,16 +41,24 @@ class RegisterFragment: Fragment() {
             when(it) {
                 is ApiResponse.Success -> {
                     if (it.data.message == "Failed") {
-                        val action = RegisterFragmentDirections.any2RegisterChk("아이디가 이미 존재합니다.")
-                        navController.navigate(action)
+                        try {
+                            val action = RegisterFragmentDirections.register2ChkDialog("아이디가 이미 존재합니다.")
+                            navController.navigate(action)
+                        } catch (e: IllegalArgumentException) { }
+
                     } else {
-                        val action = RegisterFragmentDirections.any2RegisterChk("해당 아이디를 사용할 수 있습니다.")
-                        navController.navigate(action)
+                        try {
+                            val action =
+                                RegisterFragmentDirections.register2ChkDialog("해당 아이디를 사용할 수 있습니다.")
+                            navController.navigate(action)
+                        } catch (e: IllegalArgumentException) { }
                     }
                 }
                 is ApiResponse.Failure -> {
-                    val action = RegisterFragmentDirections.any2RegisterChk("네트워크 연결을 확인해주세요.")
-                    navController.navigate(action)
+                    try {
+                        val action = RegisterFragmentDirections.register2ChkDialog("네트워크 연결을 확인해주세요.")
+                        navController.navigate(action)
+                    } catch (e: IllegalArgumentException) { }
                 }
             }
         }
@@ -59,15 +67,23 @@ class RegisterFragment: Fragment() {
             when(it) {
                 is ApiResponse.Success -> {
                     if (it.data.message == "User Already Exists") {
-                        val action = RegisterFragmentDirections.any2RegisterChk("계정이 이미 존재합니다.")
-                        navController.navigate(action)
+                        try {
+                            val action = RegisterFragmentDirections.register2ChkDialog("계정이 이미 존재합니다.")
+                            navController.navigate(action)
+                        } catch (e: IllegalArgumentException) { }
+
                     } else {
-                        navController.navigate(R.id.register_2_login)
+                        try {
+                            navController.navigate(R.id.register_2_login)
+                        } catch (e: IllegalArgumentException) { }
                     }
                 }
                 is ApiResponse.Failure -> {
-                    val action = RegisterFragmentDirections.any2RegisterChk("네트워크 연결을 확인해주세요.")
-                    navController.navigate(action)
+                    try {
+                        val action =
+                            RegisterFragmentDirections.register2ChkDialog("네트워크 연결을 확인해주세요.")
+                        navController.navigate(action)
+                    } catch (e: IllegalArgumentException) { }
                 }
             }
         }
@@ -75,8 +91,11 @@ class RegisterFragment: Fragment() {
         binding.idChkBtn.setOnClickListener {
             registerViewModel.idChk(Id(binding.idField.text.toString()), object: CoroutinesErrorHandler {
                 override fun onError(m : String) {
-                    val action = RegisterFragmentDirections.any2RegisterChk("네트워크 연결을 확인해주세요.")
-                    navController.navigate(action)
+                    try {
+                        val action =
+                            RegisterFragmentDirections.register2ChkDialog("네트워크 연결을 확인해주세요.")
+                        navController.navigate(action)
+                    } catch (e: IllegalArgumentException) { }
                 }
             })
         }
@@ -89,13 +108,18 @@ class RegisterFragment: Fragment() {
             val tel: String = binding.telField.text.toString()
 
             if (password != _password) {
-                val action = RegisterFragmentDirections.any2RegisterChk("비밀번호가 동일하지 않습니다.")
-                navController.navigate(action)
+                try {
+                    val action = RegisterFragmentDirections.register2ChkDialog("비밀번호가 동일하지 않습니다.")
+                    navController.navigate(action)
+                } catch (e: IllegalArgumentException) { }
             } else {
                 registerViewModel.register(Info(id, password, name, tel), object: CoroutinesErrorHandler {
                     override fun onError(m : String) {
-                        val action = RegisterFragmentDirections.any2RegisterChk("네트워크 연결을 확인해주세요.")
-                        navController.navigate(action)
+                        try {
+                            val action =
+                                RegisterFragmentDirections.register2ChkDialog("네트워크 연결을 확인해주세요.")
+                            navController.navigate(action)
+                        } catch (e: IllegalArgumentException) { }
                     }
                 })
             }
