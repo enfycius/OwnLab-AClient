@@ -13,19 +13,19 @@
         android:id="@+id/statusMessage"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:text="test"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:weightSum="2"
         android:orientation="horizontal">
 

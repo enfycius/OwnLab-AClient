@@ -29,9 +29,21 @@
 
         </action>
 
+        <action
+            android:id="@+id/main_2_register_chk"
+            app:destination="@id/register_chk_nav"
+            app:popUpToInclusive="true">
+
+            <argument
+                android:name="chkMessage"
+                app:argType="string"
+                android:defaultValue="" />
+
+        </action>
 
     </fragment>
 
     <include app:graph="@navigation/radar_nav" />
+    <include app:graph="@navigation/register_chk_nav" />
 
 </navigation>

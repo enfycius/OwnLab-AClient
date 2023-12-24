@@ -47,7 +47,7 @@ class RegisterChkDialog : DialogFragment() {
 
     override fun onResume() {
         super.onResume()
-        context?.dialogFragmentResize(this@RegisterChkDialog, 0.9f, 0.55f)
+        context?.dialogFragmentResize(this@RegisterChkDialog, 0.9f, 0.35f)
     }
 
     private fun Context.dialogFragmentResize(dialogFragment: DialogFragment, width: Float, height: Float) {

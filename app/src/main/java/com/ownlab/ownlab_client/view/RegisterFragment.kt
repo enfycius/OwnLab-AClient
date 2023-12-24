@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -42,8 +41,6 @@ class RegisterFragment: Fragment() {
             when(it) {
                 is ApiResponse.Success -> {
                     if (it.data.message == "Failed") {
-                        Toast.makeText(activity, it.data.message, Toast.LENGTH_LONG).show()
-
                         val action = RegisterFragmentDirections.register2RegisterChk("아이디가 이미 존재합니다.")
                         navController.navigate(action)
                     } else {
@@ -52,7 +49,8 @@ class RegisterFragment: Fragment() {
                     }
                 }
                 is ApiResponse.Failure -> {
-                    Toast.makeText(activity, "API Failed", Toast.LENGTH_LONG).show()
+                    val action = RegisterFragmentDirections.register2RegisterChk("네트워크 연결을 확인해주세요.")
+                    navController.navigate(action)
                 }
             }
         }
@@ -61,8 +59,6 @@ class RegisterFragment: Fragment() {
             when(it) {
                 is ApiResponse.Success -> {
                     if (it.data.message == "User Already Exists") {
-                        Toast.makeText(activity, it.data.message, Toast.LENGTH_LONG).show()
-
                         val action = RegisterFragmentDirections.register2RegisterChk("계정이 이미 존재합니다.")
                         navController.navigate(action)
                     } else {
@@ -70,7 +66,8 @@ class RegisterFragment: Fragment() {
                     }
                 }
                 is ApiResponse.Failure -> {
-                    Toast.makeText(activity, "API Failed", Toast.LENGTH_LONG).show()
+                    val action = RegisterFragmentDirections.register2RegisterChk("네트워크 연결을 확인해주세요.")
+                    navController.navigate(action)
                 }
             }
         }
@@ -78,7 +75,8 @@ class RegisterFragment: Fragment() {
         binding.idChkBtn.setOnClickListener {
             registerViewModel.idChk(Id(binding.idField.text.toString()), object: CoroutinesErrorHandler {
                 override fun onError(m : String) {
-                    Toast.makeText(activity, "Error $m", Toast.LENGTH_LONG).show()
+                    val action = RegisterFragmentDirections.register2RegisterChk("네트워크 연결을 확인해주세요.")
+                    navController.navigate(action)
                 }
             })
         }
@@ -96,7 +94,8 @@ class RegisterFragment: Fragment() {
             } else {
                 registerViewModel.register(Info(id, password, name, tel), object: CoroutinesErrorHandler {
                     override fun onError(m : String) {
-                        Toast.makeText(activity, "Error $m", Toast.LENGTH_LONG).show()
+                        val action = RegisterFragmentDirections.register2RegisterChk("네트워크 연결을 확인해주세요.")
+                        navController.navigate(action)
                     }
                 })
             }

@@ -1,11 +1,9 @@
 package com.ownlab.ownlab_client.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -43,10 +41,8 @@ class LoginFragment: Fragment() {
 
         tokenViewModel.token.observe(viewLifecycleOwner) {
             if (it != null) {
-                Toast.makeText(activity, "Correct", Toast.LENGTH_LONG).show()
                 navController.navigate(R.id.login_2_main)
             } else {
-                Toast.makeText(activity, "Wrong", Toast.LENGTH_LONG).show()
             }
         }
 
@@ -56,7 +52,8 @@ class LoginFragment: Fragment() {
                     tokenViewModel.save(it.data.token)
                 }
                 is ApiResponse.Failure -> {
-                    Toast.makeText(activity, "Failed", Toast.LENGTH_LONG).show()
+                    val action = LoginFragmentDirections.login2RegisterChk("아이디 또는 비밀번호를 잘못 입력하셨습니다.")
+                    navController.navigate(action)
                 }
             }
         }
@@ -67,13 +64,11 @@ class LoginFragment: Fragment() {
 
             loginViewModel.login(Auth(id, password), object: CoroutinesErrorHandler {
                 override fun onError(m : String) {
-                    Toast.makeText(activity, "Error $m", Toast.LENGTH_LONG).show()
                 }
             })
         }
 
         binding.registerBtn.setOnClickListener {
-            Toast.makeText(activity, "Test", Toast.LENGTH_LONG).show()
             navController.navigate(R.id.login_2_register)
         }
     }
