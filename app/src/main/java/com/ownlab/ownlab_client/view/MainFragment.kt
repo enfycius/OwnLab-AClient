@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -51,7 +50,8 @@ class MainFragment: Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             mainViewModel.getSurveyItems(token, object: CoroutinesErrorHandler {
                 override fun onError(message: String) {
-                    Toast.makeText(activity, "Error $message", Toast.LENGTH_LONG).show()
+                    val action = MainFragmentDirections.main2RegisterChk("네트워크 연결을 확인해주세요.")
+                    navController.navigate(action)
                 }
             })
         }
@@ -66,7 +66,10 @@ class MainFragment: Fragment() {
 
         mainViewModel.surveyQuestionsResponse.observe(viewLifecycleOwner) {
             when(it) {
-                is ApiResponse.Failure -> Toast.makeText(activity, "Failed", Toast.LENGTH_LONG).show()
+                is ApiResponse.Failure -> {
+                    val action = MainFragmentDirections.main2RegisterChk("네트워크 연결을 확인해주세요.")
+                    navController.navigate(action)
+                }
                 is ApiResponse.Success -> { mainAdapter = MainAdapter(it.data.surveyItems); binding.recyclerView.adapter = mainAdapter }
             }
         }
@@ -80,28 +83,34 @@ class MainFragment: Fragment() {
 
         mainViewModel.userResponse.observe(viewLifecycleOwner) {
             when(it) {
-                is ApiResponse.Failure -> Toast.makeText(activity, "Failed", Toast.LENGTH_LONG).show()
-                is ApiResponse.Success -> Toast.makeText(activity, "${it.data.email}", Toast.LENGTH_LONG).show()
+                is ApiResponse.Failure -> {
+                    val action = MainFragmentDirections.main2RegisterChk("네트워크 연결을 확인해주세요.")
+                    navController.navigate(action)
+                }
+                is ApiResponse.Success -> { }
             }
         }
 
         mainViewModel.surveyQuestionsResponse.observe(viewLifecycleOwner) {
             when(it) {
-                is ApiResponse.Failure -> Toast.makeText(activity, "Failed", Toast.LENGTH_LONG).show()
-                is ApiResponse.Success -> Toast.makeText(activity, "${it.data.surveyItems[0]}", Toast.LENGTH_LONG).show()
+                is ApiResponse.Failure -> {
+                    val action = MainFragmentDirections.main2RegisterChk("네트워크 연결을 확인해주세요.")
+                    navController.navigate(action)
+                }
+                is ApiResponse.Success -> { }
             }
         }
 
         mainViewModel.radarResponse.observe(viewLifecycleOwner) {
             when(it) {
-                is ApiResponse.Failure -> Toast.makeText(activity, "Failed", Toast.LENGTH_LONG).show()
+                is ApiResponse.Failure -> {
+                    val action = MainFragmentDirections.main2RegisterChk("네트워크 연결을 확인해주세요.")
+                    navController.navigate(action)
+                }
                 is ApiResponse.Success -> {
                     val radarData: ArrayList<RadarData> = ArrayList<RadarData>()
 
-                    Toast.makeText(activity, "${it.data.responsibility}", Toast.LENGTH_LONG).show()
-
                     CoroutineScope(Dispatchers.Main).launch {
-
                         for (prop in RadarResponse::class.memberProperties) {
                             val foundEnum = findEnumByKey<RadarType>(prop.name)
 
@@ -126,12 +135,14 @@ class MainFragment: Fragment() {
                         binding.workTimeField.text.toString().toInt()
                     ), object : CoroutinesErrorHandler {
                         override fun onError(message: String) {
-                            Toast.makeText(activity, "Error $message", Toast.LENGTH_LONG).show()
+                            val action = MainFragmentDirections.main2RegisterChk("네트워크 연결을 확인해주세요.")
+                            navController.navigate(action)
                         }
                     })
 
             } catch (e: NumberFormatException) {
-                Toast.makeText(activity, "Error $e", Toast.LENGTH_LONG).show()
+                val action = MainFragmentDirections.main2RegisterChk("작업시간을 숫자형식 \n(예: 10시간 -> 10)\n으로 입력해주세요.")
+                navController.navigate(action)
             }
         }
     }
