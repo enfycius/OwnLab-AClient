@@ -50,8 +50,10 @@ class MainFragment: Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             mainViewModel.getSurveyItems(token, object: CoroutinesErrorHandler {
                 override fun onError(message: String) {
-                    val action = MainFragmentDirections.any2RegisterChk("네트워크 연결을 확인해주세요.")
-                    navController.navigate(action)
+                    try {
+                        val action = MainFragmentDirections.main2ChkDialog("네트워크 연결을 확인해주세요.")
+                        navController.navigate(action)
+                    } catch (e: IllegalArgumentException) { }
                 }
             })
         }
@@ -60,15 +62,19 @@ class MainFragment: Fragment() {
             this.token = token
 
             if (token == null) {
-                navController.navigate(R.id.main_2_login)
+                try {
+                    navController.navigate(R.id.main_2_login)
+                } catch (e: IllegalArgumentException) { }
             }
         }
 
         mainViewModel.surveyQuestionsResponse.observe(viewLifecycleOwner) {
             when(it) {
                 is ApiResponse.Failure -> {
-                    val action = MainFragmentDirections.any2RegisterChk("네트워크 연결을 확인해주세요.")
-                    navController.navigate(action)
+                    try {
+                        val action = MainFragmentDirections.main2ChkDialog("네트워크 연결을 확인해주세요.")
+                        navController.navigate(action)
+                    } catch (e: IllegalArgumentException) { }
                 }
                 is ApiResponse.Success -> { mainAdapter = MainAdapter(it.data.surveyItems); binding.recyclerView.adapter = mainAdapter }
             }
@@ -84,8 +90,10 @@ class MainFragment: Fragment() {
         mainViewModel.userResponse.observe(viewLifecycleOwner) {
             when(it) {
                 is ApiResponse.Failure -> {
-                    val action = MainFragmentDirections.any2RegisterChk("네트워크 연결을 확인해주세요.")
-                    navController.navigate(action)
+                    try {
+                        val action = MainFragmentDirections.main2ChkDialog("네트워크 연결을 확인해주세요.")
+                        navController.navigate(action)
+                    } catch (e: IllegalArgumentException) { }
                 }
                 is ApiResponse.Success -> { }
             }
@@ -94,8 +102,10 @@ class MainFragment: Fragment() {
         mainViewModel.surveyQuestionsResponse.observe(viewLifecycleOwner) {
             when(it) {
                 is ApiResponse.Failure -> {
-                    val action = MainFragmentDirections.any2RegisterChk("네트워크 연결을 확인해주세요.")
-                    navController.navigate(action)
+                    try {
+                        val action = MainFragmentDirections.main2ChkDialog("네트워크 연결을 확인해주세요.")
+                        navController.navigate(action)
+                    } catch (e: IllegalArgumentException) { }
                 }
                 is ApiResponse.Success -> { }
             }
@@ -104,8 +114,10 @@ class MainFragment: Fragment() {
         mainViewModel.radarResponse.observe(viewLifecycleOwner) {
             when(it) {
                 is ApiResponse.Failure -> {
-                    val action = MainFragmentDirections.any2RegisterChk("네트워크 연결을 확인해주세요.")
-                    navController.navigate(action)
+                    try {
+                        val action = MainFragmentDirections.main2ChkDialog("네트워크 연결을 확인해주세요.")
+                        navController.navigate(action)
+                    } catch (e: IllegalArgumentException) { }
                 }
                 is ApiResponse.Success -> {
                     val radarData: ArrayList<RadarData> = ArrayList<RadarData>()
@@ -122,8 +134,7 @@ class MainFragment: Fragment() {
                         try {
                             val action = MainFragmentDirections.main2Radar(radarData.toTypedArray())
                             navController.navigate(action)
-                        } catch(e: IllegalArgumentException) {
-                        }
+                        } catch(e: IllegalArgumentException) { }
                     }
                 }
 
@@ -138,14 +149,20 @@ class MainFragment: Fragment() {
                         binding.workTimeField.text.toString().toInt()
                     ), object : CoroutinesErrorHandler {
                         override fun onError(message: String) {
-                            val action = MainFragmentDirections.any2RegisterChk("네트워크 연결을 확인해주세요.")
-                            navController.navigate(action)
+                            try {
+                                val action =
+                                    MainFragmentDirections.main2ChkDialog("네트워크 연결을 확인해주세요.")
+                                navController.navigate(action)
+                            } catch (e: IllegalArgumentException) { }
                         }
                     })
 
             } catch (e: NumberFormatException) {
-                val action = MainFragmentDirections.any2RegisterChk("작업시간을 숫자형식 \n(예: 10시간 -> 10)\n으로 입력해주세요.")
-                navController.navigate(action)
+                try {
+                    val action =
+                        MainFragmentDirections.main2ChkDialog("작업시간을 숫자형식 \n(예: 10시간 -> 10)\n으로 입력해주세요.")
+                    navController.navigate(action)
+                } catch (e: IllegalArgumentException) { }
             }
         }
     }
