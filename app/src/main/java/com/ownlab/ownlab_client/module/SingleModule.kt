@@ -73,6 +73,6 @@ class SingleModule {
     @Provides
     fun provideRetrofitBuilder(): Retrofit.Builder =
         Retrofit.Builder()
-            .baseUrl("http://221.159.102.58:3002/")
+            .baseUrl("https://albahr.co.kr/")
             .addConverterFactory(GsonConverterFactory.create())
 }
