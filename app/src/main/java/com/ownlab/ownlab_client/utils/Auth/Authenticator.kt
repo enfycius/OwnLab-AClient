@@ -19,6 +19,7 @@ import javax.inject.Inject
 class AuthAuthenticator @Inject constructor (private val tokenManager: Manager): Authenticator {
     override fun authenticate(route: Route?, response: Response): Request? {
         val token = runBlocking {
+
             tokenManager.get().first()
         }
 
@@ -45,7 +46,7 @@ class AuthAuthenticator @Inject constructor (private val tokenManager: Manager):
 
         val httpClient = OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://221.159.102.58:3002/")
+            .baseUrl("https://albahr.co.kr/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(httpClient)
             .build()
