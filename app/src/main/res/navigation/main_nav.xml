@@ -44,6 +44,7 @@
     </fragment>
 
     <include app:graph="@navigation/radar_nav" />
+    <include app:graph="@navigation/board_nav" />
     <include app:graph="@navigation/chk_dialog_nav" />
 
 </navigation>
