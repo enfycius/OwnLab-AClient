@@ -47,6 +47,13 @@ class MainFragment: Fragment() {
 
         binding.recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
+
         CoroutineScope(Dispatchers.Main).launch {
             mainViewModel.getSurveyItems(token, object: CoroutinesErrorHandler {
                 override fun onError(message: String) {
@@ -60,6 +67,8 @@ class MainFragment: Fragment() {
 
         tokenViewModel.token.observe(viewLifecycleOwner) { token ->
             this.token = token
+
+            Log.d("Test2", this.token.toString())
 
             if (token == null) {
                 try {
@@ -79,13 +88,6 @@ class MainFragment: Fragment() {
                 is ApiResponse.Success -> { mainAdapter = MainAdapter(it.data.surveyItems); binding.recyclerView.adapter = mainAdapter }
             }
         }
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(view)
 
         mainViewModel.userResponse.observe(viewLifecycleOwner) {
             when(it) {
@@ -165,23 +167,5 @@ class MainFragment: Fragment() {
                 } catch (e: IllegalArgumentException) { }
             }
         }
-    }
-
-    override fun onStop() {
-        super.onStop()
-
-        tokenViewModel.delete()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-        tokenViewModel.delete()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-        tokenViewModel.delete()
     }
 }
