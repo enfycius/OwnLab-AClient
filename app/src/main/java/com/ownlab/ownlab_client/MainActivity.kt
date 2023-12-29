@@ -5,11 +5,9 @@ import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.ownlab.ownlab_client.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,54 +21,17 @@ class MainActivity : AppCompatActivity() {
 
         _binding= ActivityMainBinding.inflate(layoutInflater)
 
-        setupToolbar()
-        setupNav()
-        setContentView(binding?.root)
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        return binding.hostFragment.getFragment<NavHostFragment>().navController.navigateUp()||super.onSupportNavigateUp()
-    }
-
-    private fun setupToolbar() {
-        val navController = binding.hostFragment.getFragment<NavHostFragment>().navController
         val toolbar = binding.fragmentToolbar
 
         toolbar.setBackgroundResource(R.color.blue)
         toolbar.setTitleTextColor(Color.WHITE)
         setSupportActionBar(toolbar)
 
-        setupActionBarWithNavController(navController)
-
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.mainFragment -> toolbar.navigationIcon = null
-                R.id.boardFragment -> toolbar.navigationIcon = null
-                else -> hideBottomNav()
-            }
-        }
+        setupActionBarWithNavController(binding.hostFragment.getFragment<NavHostFragment>().navController)
+        setContentView(binding?.root)
     }
 
-    private fun setupNav() {
-        val navController = binding.hostFragment.getFragment<NavHostFragment>().navController
-
-        binding.bottomNavi.setupWithNavController(navController)
-
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.loginFragment -> hideBottomNav()
-                R.id.mainFragment -> showBottomNav()
-                R.id.boardFragment -> showBottomNav()
-                else -> hideBottomNav()
-            }
-        }
-    }
-
-    private fun showBottomNav() {
-        binding.bottomNavi.visibility = View.VISIBLE
-    }
-
-    private fun hideBottomNav() {
-        binding.bottomNavi.visibility = View.GONE
+    override fun onSupportNavigateUp(): Boolean {
+        return binding.hostFragment.getFragment<NavHostFragment>().navController.navigateUp()||super.onSupportNavigateUp()
     }
 }
