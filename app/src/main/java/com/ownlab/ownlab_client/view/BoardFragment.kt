@@ -56,6 +56,8 @@ class BoardFragment: Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             boardViewModel.getPostItems(token, object: CoroutinesErrorHandler {
                 override fun onError(message: String) {
+                    if (message.contains("IllegalStateException")) { Log.d("Report", "데이터 없음"); return; }
+
                     try {
                         val action = BoardFragmentDirections.board2ChkDialog("네트워크 연결을 확인해주세요.")
                         navController.navigate(action)

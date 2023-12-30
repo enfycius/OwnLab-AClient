@@ -22,6 +22,12 @@
                 android:defaultValue="" />
 
         </action>
+
+        <action
+            android:id="@+id/board_register_2_board"
+            app:destination="@id/board_nav"
+            app:popUpToInclusive="true" />
+
     </fragment>
 
     <include app:graph="@navigation/chk_dialog_nav" />

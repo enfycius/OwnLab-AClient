@@ -164,7 +164,7 @@
                 android:text="지원방법" />
 
             <EditText
-                android:id="@+id/registration_method"
+                android:id="@+id/registrationMethod"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
@@ -173,6 +173,26 @@
                 android:layout_gravity="center"
                 android:background="@drawable/box"
                 android:hint="지원방법 (ex. 이메일, 전화, 문자)" />
+
+            <TextView
+                android:layout_height="30dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold"
+                android:text="세부공고" />
+
+            <EditText
+                android:id="@+id/detailedLink"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:paddingLeft="10dp"
+                android:layout_gravity="center"
+                android:background="@drawable/box"
+                android:hint="세부링크 (ex. https://www.naver.com)\n(앞에 http:// 또는 https:// 필요)" />
 
             <View
                 android:layout_width="match_parent"
