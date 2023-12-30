@@ -10,6 +10,19 @@
         android:name="com.ownlab.ownlab_client.view.BoardFragment"
         android:label="게시판"
         tools:layout="@layout/fragment_board">
+
+        <action
+            android:id="@+id/board_2_chk_dialog"
+            app:destination="@id/chk_dialog_nav"
+            app:popUpToInclusive="true">
+
+            <argument
+                android:name="chkMessage"
+                app:argType="string"
+                android:defaultValue="" />
+
+        </action>
     </fragment>
 
+    <include app:graph="@navigation/chk_dialog_nav" />
 </navigation>

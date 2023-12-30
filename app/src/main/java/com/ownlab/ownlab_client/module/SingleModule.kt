@@ -8,6 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import androidx.datastore.preferences.core.Preferences
 import com.ownlab.ownlab_client.service.AuthApi
+import com.ownlab.ownlab_client.service.BoardApi
 import com.ownlab.ownlab_client.service.MainApi
 import com.ownlab.ownlab_client.utils.Auth.AuthAuthenticator
 import com.ownlab.ownlab_client.utils.Auth.AuthInterceptor
@@ -58,6 +59,13 @@ class SingleModule {
         retrofit
             .build()
             .create(MainApi::class.java)
+
+    @Singleton
+    @Provides
+    fun provideBoardAPI(retrofit: Retrofit.Builder): BoardApi =
+        retrofit
+            .build()
+            .create(BoardApi::class.java)
 
     @Singleton
     @Provides
