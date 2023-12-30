@@ -42,6 +42,10 @@ class BoardFragment: Fragment() {
 
         binding.recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
+        binding.fab.setOnClickListener {
+            navController.navigate(R.id.board_2_board_register)
+        }
+
         return binding.root
     }
 
