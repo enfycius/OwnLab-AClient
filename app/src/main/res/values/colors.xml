@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="primary">#0431B4</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="box">#b1b1b3</color>
     <color name="blue">#3478f5</color>
     <color name="register">#4b85e9</color>
+    <color name="line_color">#D8D8D8</color>
 </resources>

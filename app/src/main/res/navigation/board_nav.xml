@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/board_nav"
+    app:startDestination="@id/boardFragment">
+
+    <fragment
+        android:id="@+id/boardFragment"
+        android:name="com.ownlab.ownlab_client.view.BoardFragment"
+        android:label="게시판"
+        tools:layout="@layout/fragment_board">
+
+        <action
+            android:id="@+id/board_2_chk_dialog"
+            app:destination="@id/chk_dialog_nav"
+            app:popUpToInclusive="true">
+
+            <argument
+                android:name="chkMessage"
+                app:argType="string"
+                android:defaultValue="" />
+
+        </action>
+
+        <action
+            android:id="@+id/board_2_board_register"
+            app:destination="@id/board_register_nav"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <include app:graph="@navigation/chk_dialog_nav" />
+    <include app:graph="@navigation/board_register_nav" />
+</navigation>
