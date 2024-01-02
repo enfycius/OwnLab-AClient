@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.ownlab.ownlab_client.R
 import com.ownlab.ownlab_client.databinding.FragmentRadarBinding
 import com.ownlab.ownlab_client.models.RadarData
 import com.ownlab.ownlab_client.viewmodels.TokenViewModel
@@ -37,24 +38,16 @@ class RadarFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
+        tokenViewModel.token.observe(viewLifecycleOwner) { token ->
+            this.token = token
+
+            if (token == null) {
+                try {
+                    navController.navigate(R.id.radar_2_login)
+                } catch (e: IllegalArgumentException) { }
+            }
+        }
+
         binding.radarChart.setRadarData(args.radarData!!.toList() as ArrayList<RadarData>)
-    }
-
-    override fun onStop() {
-        super.onStop()
-
-        tokenViewModel.delete()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-        tokenViewModel.delete()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-        tokenViewModel.delete()
     }
 }
