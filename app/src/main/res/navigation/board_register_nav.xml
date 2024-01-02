@@ -2,17 +2,17 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/board_nav"
-    app:startDestination="@id/boardFragment">
+    android:id="@+id/board_register_nav"
+    app:startDestination="@id/boardRegisterFragment">
 
     <fragment
-        android:id="@+id/boardFragment"
-        android:name="com.ownlab.ownlab_client.view.BoardFragment"
-        android:label="게시판"
-        tools:layout="@layout/fragment_board">
+        android:id="@+id/boardRegisterFragment"
+        android:name="com.ownlab.ownlab_client.view.BoardRegisterFragment"
+        android:label="채용공고등록"
+        tools:layout="@layout/fragment_board_register">
 
         <action
-            android:id="@+id/board_2_chk_dialog"
+            android:id="@+id/board_register_2_chk_dialog"
             app:destination="@id/chk_dialog_nav"
             app:popUpToInclusive="true">
 
@@ -24,11 +24,11 @@
         </action>
 
         <action
-            android:id="@+id/board_2_board_register"
-            app:destination="@id/board_register_nav"
+            android:id="@+id/board_register_2_board"
+            app:destination="@id/board_nav"
             app:popUpToInclusive="true" />
+
     </fragment>
 
     <include app:graph="@navigation/chk_dialog_nav" />
-    <include app:graph="@navigation/board_register_nav" />
 </navigation>

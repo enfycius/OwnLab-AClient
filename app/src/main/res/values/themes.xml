@@ -3,6 +3,7 @@
     <style name="Base.Theme.OwnLabClient" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorAccent">@color/primary</item>
     </style>
 
     <style name="ToolbarColoredBackArrow" parent="Theme.AppCompat.Light.NoActionBar">
