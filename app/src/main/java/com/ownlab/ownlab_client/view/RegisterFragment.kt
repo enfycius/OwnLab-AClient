@@ -13,7 +13,6 @@ import com.ownlab.ownlab_client.databinding.FragmentRegisterBinding
 import com.ownlab.ownlab_client.models.Id
 import com.ownlab.ownlab_client.models.Info
 import com.ownlab.ownlab_client.utils.ApiResponse
-
 import com.ownlab.ownlab_client.viewmodels.RegisterViewModel
 import com.ownlab.ownlab_client.viewmodels.`interface`.CoroutinesErrorHandler
 import dagger.hilt.android.AndroidEntryPoint
@@ -74,7 +73,7 @@ class RegisterFragment: Fragment() {
 
                     } else {
                         try {
-                            navController.navigate(R.id.register_2_login)
+                            navController.navigate(R.id.register_2_registeration_success)
                         } catch (e: IllegalArgumentException) { }
                     }
                 }

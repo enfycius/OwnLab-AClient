@@ -21,4 +21,8 @@ class AuthRepository @Inject constructor (private val authApi: AuthApi) {
     fun register(info: Info) = constants.apiFlow {
         authApi.register(info)
     }
+
+    fun registerCompany(info: Info) = constants.apiFlow {
+        authApi.registerCompany(info)
+    }
 }

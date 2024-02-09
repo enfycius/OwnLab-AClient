@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:ignore="MissingDefaultResource"
+    tools:context=".view.RegisterFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="17dp"
+        android:orientation="vertical"
+        app:layout_anchorGravity="center"
+        android:layout_marginTop="300dp"
+        tools:ignore="MissingDefaultResource">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="9dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="아이디"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_brightness_1_24"
+                app:tint="@color/light_red" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="6">
+
+            <EditText
+                android:id="@+id/idField"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_weight="5"
+                android:background="@drawable/edittext_border"
+                android:ems="20"
+                android:hint="아이디"
+                android:padding="10dp"
+                android:paddingLeft="6dp"
+                android:textColorHint="@color/gray100"
+                android:textSize="14dp" />
+
+            <Button
+                android:id="@+id/idChkBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/gray_button"
+                android:text="확인"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비밀번호"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_brightness_1_24"
+                app:tint="@color/light_red" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/passwordField"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_border"
+            android:ems="10"
+            android:hint="비밀번호"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:paddingLeft="6dp"
+            android:textColorHint="@color/gray100"
+            android:textSize="14dp" />
+
+        <EditText
+            android:id="@+id/rePasswordField"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_border"
+            android:ems="10"
+            android:hint="비밀번호 확인"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:paddingLeft="6dp"
+            android:textColorHint="@color/gray100"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="회사명"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_brightness_1_24"
+                app:tint="@color/light_red" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/companyName"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_border"
+            android:ems="10"
+            android:hint="회사명"
+            android:padding="10dp"
+            android:paddingLeft="6dp"
+            android:textColorHint="@color/gray100"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="대표자명"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_brightness_1_24"
+                app:tint="@color/light_red" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/ceoName"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_border"
+            android:ems="10"
+            android:hint="대표자명"
+            android:padding="10dp"
+            android:paddingLeft="6dp"
+            android:textColorHint="@color/gray100"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="사업자등록번호 10자리"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_brightness_1_24"
+                app:tint="@color/light_red" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/listed"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_border"
+            android:ems="10"
+            android:hint="사업자등록번호 10자리"
+            android:padding="10dp"
+            android:paddingLeft="6dp"
+            android:textColorHint="@color/gray100"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="9dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="사업자 주소"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_brightness_1_24"
+                app:tint="@color/light_red" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="6">
+
+            <EditText
+                android:id="@+id/zipCode"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_weight="5"
+                android:background="@drawable/edittext_border_add"
+                android:ems="20"
+                android:hint="우편 번호"
+                android:padding="10dp"
+                android:paddingLeft="6dp"
+                android:textColorHint="@color/gray100"
+                android:textSize="14dp" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/gray_button"
+                android:text="검색"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_border_add"
+            android:ems="10"
+            android:hint="도로명/지번 주소"
+            android:padding="10dp"
+            android:paddingLeft="6dp"
+            android:textColorHint="@color/gray100"
+            android:textSize="14dp" />
+        <EditText
+            android:id="@+id/addressDetail"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_border"
+            android:ems="10"
+            android:hint="상세 주소"
+            android:padding="10dp"
+            android:paddingLeft="6dp"
+            android:textColorHint="@color/gray100"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="사업내용"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_brightness_1_24"
+                app:tint="@color/light_red" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/companyVision"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_border"
+            android:ems="10"
+            android:hint="사업내용"
+            android:padding="10dp"
+            android:paddingLeft="6dp"
+            android:textColorHint="@color/gray100"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이름"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_brightness_1_24"
+                app:tint="@color/light_red" />
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_border"
+            android:ems="10"
+            android:hint="이름"
+            android:padding="10dp"
+            android:paddingLeft="6dp"
+            android:textColorHint="@color/gray100"
+            android:textSize="14dp" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="휴대폰번호"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_brightness_1_24"
+                app:tint="@color/light_red" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:orientation="horizontal"
+            android:weightSum="6">
+
+            <EditText
+                android:id="@+id/ceoTel"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_weight="5"
+                android:background="@drawable/edittext_border"
+                android:ems="20"
+                android:hint="휴대폰번호"
+                android:padding="10dp"
+                android:paddingLeft="6dp"
+                android:textColorHint="@color/gray100"
+                android:textSize="14dp" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/gray_button"
+                android:text="전송"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:orientation="horizontal"
+            android:weightSum="6">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_weight="5"
+                android:background="@drawable/edittext_border"
+                android:ems="20"
+                android:hint="인증번호"
+                android:padding="10dp"
+                android:paddingLeft="6dp"
+                android:textColorHint="@color/gray100"
+                android:textSize="14dp" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/gray_button"
+                android:text="확인"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_details_info" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:text="3분 이내로 인증번호를 입력해 주세요. 만약 인증 문자를 수신할 수 없는 경우 입력하신 정보 및 수신차단 여부를 확인해주세요."
+                android:textColor="@color/gray600"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/registerBtn"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button"
+            android:text="가입하기"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+</ScrollView>

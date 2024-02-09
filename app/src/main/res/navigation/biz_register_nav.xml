@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/biz_register_nav"
+    app:startDestination="@id/bizRegisterFragment">
+
+    <fragment
+        android:id="@+id/bizRegisterFragment"
+        android:name="com.ownlab.ownlab_client.view.BizRegisterFragment"
+        android:label="회원가입" />
+</navigation>
