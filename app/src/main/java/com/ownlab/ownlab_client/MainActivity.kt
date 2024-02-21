@@ -1,10 +1,13 @@
 package com.ownlab.ownlab_client
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.ownlab.ownlab_client.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,8 +50,19 @@ class MainActivity : AppCompatActivity() {
                     toolbarTitle.text = "회원가입"
                 }
 
+                R.id.mainFragment -> {
+                    toolbarTitle.text = "홈"
+                }
+                R.id.boardFragment ->{
+                    toolbarTitle.text = "게시판"
+                }
+                R.id.myPageFragment -> {
+                    toolbarTitle.text= "마이페이지"
+                }
+
                 R.id.mainFragment -> toolbar.navigationIcon = null
                 R.id.boardFragment -> toolbar.navigationIcon = null
+                R.id.myPageFragment -> toolbar.navigationIcon = null
                 else -> hideBottomNav()
             }
         }
@@ -64,11 +78,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.loginFragment -> hideBottomNav()
                 R.id.mainFragment -> showBottomNav()
                 R.id.boardFragment -> showBottomNav()
+                R.id.myPageFragment -> showBottomNav()
                 else -> hideBottomNav()
             }
         }
     }
-
     private fun showBottomNav() {
         binding.bottomNavi.visibility = View.VISIBLE
     }
