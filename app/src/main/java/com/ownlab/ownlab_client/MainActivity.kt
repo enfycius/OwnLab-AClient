@@ -56,13 +56,13 @@ class MainActivity : AppCompatActivity() {
                 R.id.boardFragment ->{
                     toolbarTitle.text = "게시판"
                 }
-                R.id.myPageFragment -> {
+                R.id.myPageScreen -> {
                     toolbarTitle.text= "마이페이지"
                 }
 
                 R.id.mainFragment -> toolbar.navigationIcon = null
                 R.id.boardFragment -> toolbar.navigationIcon = null
-                R.id.myPageFragment -> toolbar.navigationIcon = null
+                R.id.myPageScreen -> toolbar.navigationIcon = null
                 else -> hideBottomNav()
             }
         }
@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.loginFragment -> hideBottomNav()
                 R.id.mainFragment -> showBottomNav()
                 R.id.boardFragment -> showBottomNav()
-                R.id.myPageFragment -> showBottomNav()
+                R.id.myPageScreen -> showBottomNav()
                 else -> hideBottomNav()
             }
         }

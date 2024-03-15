@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/my_page_nav"
+    app:startDestination="@id/myPageScreen">
+
+    <fragment
+        android:id="@+id/myPageScreen"
+        android:name="com.ownlab.ownlab_client.view.MyPageScreen"
+        android:label="MyPageScreen" />
+</navigation>
