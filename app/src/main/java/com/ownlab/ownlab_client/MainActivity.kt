@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.mainFragment -> {
-                    toolbarTitle.text = "홈"
+                    toolbarTitle.text = "평가관리"
                 }
                 R.id.boardFragment ->{
                     toolbarTitle.text = "게시판"
@@ -76,10 +76,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.loginFragment -> hideBottomNav()
-                R.id.mainFragment -> showBottomNav()
-                R.id.boardFragment -> showBottomNav()
-                R.id.myPageScreen -> showBottomNav()
-                else -> hideBottomNav()
+                else -> showBottomNav()
             }
         }
     }
