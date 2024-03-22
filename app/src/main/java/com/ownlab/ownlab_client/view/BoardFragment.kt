@@ -53,14 +53,11 @@ class BoardFragment : Fragment() {
         binding.radioGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.seekerRadioButton -> {
-                    // 채용공고 라디오 버튼 선택 시
-                    // 채용공고에 해당하는 화면을 보여줌
-                    // 예를 들어 다른 프래그먼트로 이동하거나 다른 레이아웃을 inflate할 수 있음
                 }
 
                 R.id.companyRadioButton -> {
-                    binding.recyclerView.layoutManager =
-                        LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+                    navController.navigate(R.id.action_boardFragment_to_applicantManagementFragment2)
+
                 }
             }
         }
@@ -68,10 +65,6 @@ class BoardFragment : Fragment() {
             navController.navigate(R.id.board_2_board_register)
         }
         return binding.root
-    }
-
-    private fun showCompanyView() {
-        // 지원자에 해당하는 다른 화면을 보여주는 코드를 작성
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

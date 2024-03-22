@@ -170,8 +170,6 @@ fun MyPageScreen(navController: androidx.navigation.NavController) {
             .fillMaxSize()
             .padding(16.dp),
     ) {
-        MyProfile()
-        HorizontalDivider()
         myPageTitle(title = "My")
         profileChoice(mainText = "이력서 및 경력관리", onCLick = {})
         profileChoice(mainText = "나의 스펙", onCLick = {})

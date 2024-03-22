@@ -1,13 +1,10 @@
 package com.ownlab.ownlab_client.view
 
 
-import android.icu.text.CaseMap
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -26,7 +23,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -35,7 +31,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -45,7 +40,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -53,17 +47,12 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ownlab.ownlab_client.R
 import com.ownlab.ownlab_client.gray100
 import com.ownlab.ownlab_client.gray200
 import com.ownlab.ownlab_client.gray500
 import com.ownlab.ownlab_client.gray600
-import com.ownlab.ownlab_client.gray700
 import com.ownlab.ownlab_client.models.PostItem
-import com.ownlab.ownlab_client.models.PostItemResponse
 import com.ownlab.ownlab_client.subTextColor
 import com.ownlab.ownlab_client.textPrimaryColor
 import kotlinx.coroutines.delay
@@ -296,16 +285,6 @@ fun TitleText() {
                 fontWeight = FontWeight.Bold
             )
         }
-        Box(
-            modifier = Modifier.padding(end = 16.dp)
-        ) {
-            Text(
-                text = "2/10",
-                color = textPrimaryColor,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-            )
-        }
     }
 }
 
@@ -315,14 +294,14 @@ fun NoContentUI() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 90.dp, start = 16.dp, end = 16.dp),
+            .padding(top = 120.dp, start = 16.dp, end = 16.dp, bottom = 120.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
             modifier = Modifier
-                .width(100.dp)
-                .height(100.dp),
+                .width(60.dp)
+                .height(60.dp),
             painter = painterResource(id = R.drawable.emoji_speech_balloon_empty),
             contentDescription = "등록된 내역이 없습니다."
         )
@@ -335,31 +314,8 @@ fun NoContentUI() {
     }
 }
 
-//@Composable
-//fun JobPostingBox() {
-//
-//    LazyRow(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .padding(top = 24.dp, start = 16.dp, end = 16.dp)
-//    ) {
-//        items(10) { index ->
-//            Box(
-//                modifier = Modifier
-//                    .width(160.dp)
-//                    .height(187.dp)
-//                    .padding(end = 8.dp)
-//                    .background(color = Color.Transparent, shape = RoundedCornerShape(10.dp))
-//                    .border(BorderStroke(1.dp, gray200), shape = RoundedCornerShape(10.dp))
-//            ) {
-//            }
-//        }
-//    }
-//}
-
 @Composable
 fun BoxContent(index: Int) {
-    // 여기에 박스 내부의 내용을 정의합니다.
     Text(text = "Box $index", modifier = Modifier.padding(8.dp))
 }
 
@@ -385,44 +341,12 @@ fun JobPostingBox() {
     }
 }
 
-
-//
-//@Composable
-//fun JobPostingBox(token:String, viewModel: BoardViewModel = viewModel()
-//) {
-//    val postItemResponseState = remember {
-//        mutableStateOf<ApiResponse<PostItemResponse>>(ApiResponse.Loading)
-//    }
-
-//    LaunchedEffect(Unit) {
-//        val response = viewModel.getPostItems(token)
-//        //postItemResponseState.value = response
-//    }
-
-//    when (val postItemResponse = postItemResponseState.value) {
-//        is ApiResponse.Loading -> {
-//            // 로딩 중 화면 구성
-//        }
-//        is ApiResponse.Success -> {
-//            val postItems = postItemResponse.data.items
-//            // 게시글 목록 UI 구성
-//        }
-//        is ApiResponse.Failure -> {
-//            val error = postItemResponse.error
-//            // 오류 화면 구성
-//        }
-//
-//        else -> {}
-//    }
-//}
-
-
 @Composable
 fun CompanyDetailsFooter() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .height(80.dp)
+            .height(60.dp)
             .padding(start = 16.dp, end = 16.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
@@ -466,6 +390,7 @@ fun CompanyDetailsFooterBoxText(keyTitle: String, value: String) {
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
             .fillMaxWidth()
+            .padding(top = 7.dp)
     ) {
         Box(
             modifier = Modifier
@@ -494,44 +419,21 @@ fun CompanyDetailsFooterBoxText(keyTitle: String, value: String) {
 }
 
 @Composable
-fun BoardList(postItems: List<PostItem>) {
-    LazyColumn {
-        items(postItems) { postItem ->
-            BoardItem(postItem = postItem)
-        }
-    }
-}
-
-@Composable
-fun BoardItem(postItem: PostItem) {
-    Text(text = postItem.title)
-    Text(text = "Recruit Date: ${postItem.start_date} ~ ${postItem.end_date}")
-    Text(text = "Registration Date: ${postItem.registration_date}")
-    Text(text = "Assignee: ${postItem.assignee}")
-    Text(text = "Contacts: ${postItem.contacts}")
-    Text(text = "Email: ${postItem.email}")
-    Text(text = "Registration Method: ${postItem.registration_method}")
-    Text(text = "Address: ${postItem.address}")
-    Text(text = "Detailed Link: ${postItem.detailed_link}")
-}
-
-@Composable
 fun CompanyDetailsFooterBox() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(135.dp)
-            .padding(start = 16.dp, end = 16.dp)
+            .height(165.dp)
+            .padding(start = 16.dp, end = 16.dp, bottom = 30.dp)
             .background(
                 color = gray500, shape = RoundedCornerShape(10.dp)
             )
     ) {
-        Column(modifier = Modifier.padding(top = 16.dp)) {
-            CompanyDetailsFooterBoxText(keyTitle = "대표자명", value = "홍길동")
-            CompanyDetailsFooterBoxText(keyTitle = "주소", value = "서울시 구로구 디지털로")
-            CompanyDetailsFooterBoxText(keyTitle = "사업자등록번호", value = "123-45-678")
-            CompanyDetailsFooterBoxText(keyTitle = "개인정보보호책임자", value = "02-1234-5678")
-            CompanyDetailsFooterBoxText(keyTitle = "고객센터", value = "123-45-678")
+        Column(modifier = Modifier.padding(top = 8.dp)) {
+            CompanyDetailsFooterBoxText(keyTitle = "대표자명", value = "조용준")
+            CompanyDetailsFooterBoxText(keyTitle = "주소", value = "대전시 유성구 동서대로 125(한밭인큐베이터타운 203호")
+            CompanyDetailsFooterBoxText(keyTitle = "사업자등록번호", value = "371-87-03031")
+            CompanyDetailsFooterBoxText(keyTitle = "개인정보보호 및 고객센터", value = "01044394000")
         }
     }
 }
@@ -546,8 +448,6 @@ fun JobPortalMainUI() {
         item { LocalSelection() }
         item { TitleText() }
         item { NoContentUI() }
-        //item { JobPostingBox(viewModel = viewModel) }
-        item { JobPostingBox() }
         item { CompanyDetailsFooter() }
         item { CompanyDetailsFooterBox() }
     }

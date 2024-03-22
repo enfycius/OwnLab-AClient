@@ -7,5 +7,26 @@
     <fragment
         android:id="@+id/bizRegisterFragment"
         android:name="com.ownlab.ownlab_client.view.BizRegisterFragment"
-        android:label="회원가입" />
+        android:label="회원가입" >
+        <action
+            android:id="@+id/register_2_chk_dialog"
+            app:destination="@id/chk_dialog_nav"
+            app:popUpToInclusive="true">
+
+            <argument
+                android:name="chkMessage"
+                android:defaultValue=""
+                app:argType="string" />
+
+        </action>
+        <action
+            android:id="@+id/register_2_registeration_success"
+            app:destination="@id/registeration_success_nav"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <include app:graph="@navigation/chk_dialog_nav" />
+    <include app:graph="@navigation/registeration_success_nav" />
+
+
 </navigation>
