@@ -51,20 +51,34 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.mainFragment -> {
-                    toolbarTitle.text = "홈"
+                    toolbarTitle.text = "평가관리"
                 }
                 R.id.boardFragment ->{
-                    toolbarTitle.text = "게시판"
+                    toolbarTitle.text = "공고/지원자관리"
+                }
+                R.id.applicantManagementFragment2->{
+                    toolbarTitle.text = "공고/지원자관리"
                 }
                 R.id.myPageScreen -> {
                     toolbarTitle.text= "마이페이지"
                 }
 
+                R.id.ownLabMainScreen->{
+                    toolbarTitle.text ="홈"
+                }
+                R.id.boardRegisterFragment->{
+                    toolbarTitle.text= "채용공고등록"
+                }
+
                 R.id.mainFragment -> toolbar.navigationIcon = null
                 R.id.boardFragment -> toolbar.navigationIcon = null
                 R.id.myPageScreen -> toolbar.navigationIcon = null
+
                 else -> hideBottomNav()
             }
+            val hideHomeButtonIds = setOf(R.id.mainFragment, R.id.boardFragment, R.id.myPageScreen, R.id.ownLabMainScreen)
+            toolbar.navigationIcon = if (hideHomeButtonIds.contains(destination.id)) null else toolbar.navigationIcon
+
         }
     }
 
@@ -76,10 +90,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.loginFragment -> hideBottomNav()
-                R.id.mainFragment -> showBottomNav()
-                R.id.boardFragment -> showBottomNav()
-                R.id.myPageScreen -> showBottomNav()
-                else -> hideBottomNav()
+                else -> showBottomNav()
             }
         }
     }

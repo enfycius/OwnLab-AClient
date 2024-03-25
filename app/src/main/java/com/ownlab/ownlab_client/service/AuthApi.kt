@@ -23,8 +23,8 @@ interface AuthApi {
         @Body emailChk: Id,
     ): Response<IdChkResponse>
 
-    @POST("auth/register")
-    suspend fun register(
+    @POST("auth/member/register")
+    suspend fun registerMember(
         @Body info: Info,
     ): Response<RegisterResponse>
 
@@ -34,10 +34,9 @@ interface AuthApi {
         @Header("") token: String
     ): Response<LoginResponse>
 
-    @POST("auth/company")
+    @POST("auth/company/register")
     suspend fun registerCompany(
         @Body info: Info
     ): Response<RegisterResponse>
-
 
 }
