@@ -112,7 +112,7 @@ class RegisterFragment: Fragment() {
                     navController.navigate(action)
                 } catch (e: IllegalArgumentException) { }
             } else {
-                registerViewModel.register(Info(id, password, name, tel), object: CoroutinesErrorHandler {
+                registerViewModel.registerMember(Info(id, password, name, tel), object: CoroutinesErrorHandler {
                     override fun onError(m : String) {
                         try {
                             val action =

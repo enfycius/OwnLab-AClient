@@ -24,7 +24,7 @@ interface AuthApi {
     ): Response<IdChkResponse>
 
     @POST("auth/member/register")
-    suspend fun register(
+    suspend fun registerMember(
         @Body info: Info,
     ): Response<RegisterResponse>
 
