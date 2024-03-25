@@ -9,12 +9,12 @@ plugins {
 
 android {
     namespace 'com.ownlab.ownlab_client'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.ownlab.ownlab_client"
         minSdk 26
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -37,6 +37,10 @@ android {
 
     buildFeatures {
         viewBinding = true
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.6"
     }
 }
 
@@ -50,6 +54,8 @@ dependencies {
 
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
+    implementation 'androidx.navigation:navigation-compose:2.7.7'
+    implementation 'androidx.paging:paging-common-android:3.3.0-alpha03'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -74,4 +80,26 @@ dependencies {
 
     def reflect_version = "1.9.22"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$reflect_version"
+    def composeBom = platform('androidx.compose:compose-bom:2024.02.01')
+    implementation composeBom
+    androidTestImplementation composeBom
+
+    implementation 'androidx.compose.material3:material3'
+    implementation 'androidx.compose.material:material'
+    implementation 'androidx.compose.foundation:foundation'
+    implementation 'androidx.compose.ui:ui'
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+    implementation 'androidx.compose.material:material-icons-core'
+    implementation 'androidx.compose.material:material-icons-extended'
+    implementation 'androidx.compose.material3:material3-window-size-class'
+    implementation 'androidx.activity:activity-compose:1.6.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1'
+    implementation 'androidx.compose.runtime:runtime-livedata'
+    implementation 'androidx.compose.runtime:runtime-rxjava2'
+
+    implementation "com.google.accompanist:accompanist-pager-indicators:0.28.0"
+
 }

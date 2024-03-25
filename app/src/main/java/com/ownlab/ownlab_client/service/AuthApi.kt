@@ -34,6 +34,10 @@ interface AuthApi {
         @Header("") token: String
     ): Response<LoginResponse>
 
+    @POST("auth/company")
+    suspend fun registerCompany(
+        @Body info: Info
+    ): Response<RegisterResponse>
 
 
 }

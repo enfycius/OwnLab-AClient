@@ -26,4 +26,8 @@ class RegisterViewModel @Inject constructor (private val authRepo: AuthRepositor
     fun register(info: Info, coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(registerResponse, coroutinesErrorHandler) {
         authRepo.register(info)
     }
+
+    fun registerCompany(info: Info, coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(registerResponse, coroutinesErrorHandler){
+        authRepo.registerCompany(info)
+    }
 }
