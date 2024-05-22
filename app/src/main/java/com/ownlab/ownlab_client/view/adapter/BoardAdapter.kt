@@ -7,12 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ownlab.ownlab_client.R
 import com.ownlab.ownlab_client.databinding.RecyclerviewPostItemBinding
 import com.ownlab.ownlab_client.models.PostItem
+import com.ownlab.ownlab_client.view.interfaces.OnItemClick
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-class BoardAdapter(private val postItems: List<PostItem>): RecyclerView.Adapter<BoardAdapter.BoardViewHolder>() {
-
+class BoardAdapter(val postItems: List<PostItem>, listener : OnItemClick): RecyclerView.Adapter<BoardAdapter.BoardViewHolder>() {
+    private val mCallback = listener
     class BoardViewHolder(private val binding: RecyclerviewPostItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val recruitDate = binding.recruitDate
         val title = binding.title
@@ -24,6 +25,7 @@ class BoardAdapter(private val postItems: List<PostItem>): RecyclerView.Adapter<
         val address = binding.address
         val detailedLink = binding.detailedLink
         val recruitmentDates = binding.recruitmentDates
+        val applyBtn = binding.applyBtn
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardViewHolder {
@@ -57,6 +59,12 @@ class BoardAdapter(private val postItems: List<PostItem>): RecyclerView.Adapter<
             holder.registrationMethod.text = postItems[position].registration_method
             holder.address.text = postItems[position].address
             holder.detailedLink.text = postItems[position].detailed_link
+
+            holder.applyBtn.setOnClickListener {
+                Log.d("Test", holder.email.text.toString())
+
+                mCallback.applyInfo()
+            }
 
             if (dates.size == 2) {
                 val startDate = sdf.parse(dates[0])
