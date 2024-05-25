@@ -1,5 +1,6 @@
 package com.ownlab.ownlab_client.service
 
+import com.ownlab.ownlab_client.models.ApplyPostRequest
 import com.ownlab.ownlab_client.models.PostItemRequest
 import com.ownlab.ownlab_client.models.PostItemResponse
 import com.ownlab.ownlab_client.models.RadarResponse
@@ -20,4 +21,7 @@ interface BoardApi {
 
     @POST("post/add_post")
     suspend fun registerPostItems(@Header("Authorization") token: String, @Body postItemRequest: PostItemRequest): Response<RegisterResponse>
+
+    @POST("post/apply_post")
+    suspend fun applyPostItem(@Header("Authorization") token: String, @Body applyPostRequest: ApplyPostRequest): Response<RegisterResponse>
 }

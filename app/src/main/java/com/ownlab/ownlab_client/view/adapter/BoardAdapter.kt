@@ -62,8 +62,9 @@ class BoardAdapter(val postItems: List<PostItem>, listener : OnItemClick): Recyc
 
             holder.applyBtn.setOnClickListener {
                 Log.d("Test", holder.email.text.toString())
+                Log.d("Test", postItems[position].id.toString())
 
-                mCallback.applyInfo()
+                mCallback.applyInfo(postItems[position].id, holder.email.text.toString())
             }
 
             if (dates.size == 2) {

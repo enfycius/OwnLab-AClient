@@ -14,7 +14,7 @@ import com.ownlab.ownlab_client.models.Id
 import com.ownlab.ownlab_client.models.Info
 import com.ownlab.ownlab_client.utils.ApiResponse
 import com.ownlab.ownlab_client.viewmodels.RegisterViewModel
-import com.ownlab.ownlab_client.viewmodels.`interface`.CoroutinesErrorHandler
+import com.ownlab.ownlab_client.viewmodels.interfaces.CoroutinesErrorHandler
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

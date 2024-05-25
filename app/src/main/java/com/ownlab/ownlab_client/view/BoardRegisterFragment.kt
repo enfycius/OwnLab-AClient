@@ -12,23 +12,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.ownlab.ownlab_client.R
-import com.ownlab.ownlab_client.databinding.FragmentBoardBinding
 import com.ownlab.ownlab_client.databinding.FragmentBoardRegisterBinding
 import com.ownlab.ownlab_client.models.PostItemRequest
-import com.ownlab.ownlab_client.models.SurveyResultRequest
 import com.ownlab.ownlab_client.utils.ApiResponse
-import com.ownlab.ownlab_client.view.adapter.BoardAdapter
-import com.ownlab.ownlab_client.view.adapter.MainAdapter
 import com.ownlab.ownlab_client.viewmodels.BoardViewModel
-import com.ownlab.ownlab_client.viewmodels.MainViewModel
 import com.ownlab.ownlab_client.viewmodels.TokenViewModel
-import com.ownlab.ownlab_client.viewmodels.`interface`.CoroutinesErrorHandler
+import com.ownlab.ownlab_client.viewmodels.interfaces.CoroutinesErrorHandler
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class BoardRegisterFragment: Fragment() {

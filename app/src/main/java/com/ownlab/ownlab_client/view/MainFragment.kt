@@ -22,7 +22,7 @@ import com.ownlab.ownlab_client.utils.ApiResponse
 import com.ownlab.ownlab_client.view.adapter.MainAdapter
 import com.ownlab.ownlab_client.viewmodels.MainViewModel
 import com.ownlab.ownlab_client.viewmodels.TokenViewModel
-import com.ownlab.ownlab_client.viewmodels.`interface`.CoroutinesErrorHandler
+import com.ownlab.ownlab_client.viewmodels.interfaces.CoroutinesErrorHandler
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

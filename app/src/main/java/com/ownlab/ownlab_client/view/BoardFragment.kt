@@ -13,6 +13,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ownlab.ownlab_client.R
 import com.ownlab.ownlab_client.databinding.FragmentBoardBinding
+import com.ownlab.ownlab_client.models.ApplyPostRequest
 import com.ownlab.ownlab_client.utils.ApiResponse
 import com.ownlab.ownlab_client.view.adapter.BoardAdapter
 import com.ownlab.ownlab_client.view.interfaces.OnItemClick
@@ -114,7 +115,20 @@ class BoardFragment : Fragment(), OnItemClick {
         }
     }
 
-    override fun applyInfo() {
-        Log.d("Test", "Clicked")
+    override fun applyInfo(id: Int, assignee: String) {
+        val applyPostRequest = ApplyPostRequest(id, assignee)
+
+        boardViewModel.applyPostItem(token, applyPostRequest, object : CoroutinesErrorHandler {
+            override fun onError(message: String) {
+                if (message.contains("IllegalStateException")) {
+                    Log.d("Report", "데이터 없음"); return; }
+
+                try {
+                    val action = BoardFragmentDirections.board2ChkDialog("네트워크 연결을 확인해주세요.")
+                    navController.navigate(action)
+                } catch (e: IllegalArgumentException) {
+                }
+            }
+        })
     }
 }
