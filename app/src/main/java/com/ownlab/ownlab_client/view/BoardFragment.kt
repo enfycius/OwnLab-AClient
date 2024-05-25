@@ -113,6 +113,33 @@ class BoardFragment : Fragment(), OnItemClick {
                             navController.navigate(action)
                         } catch (e: IllegalArgumentException) {
                         }
+                    } else if (it.data.message.contains("Already fulfilled")) {
+                        try {
+                            val action = BoardFragmentDirections.board2ChkDialog("모집인원이 모두 찼습니다.")
+                            navController.navigate(action)
+                        } catch (e: IllegalArgumentException) {
+                        }
+                    } else if (it.data.message.contains("success")) {
+                        try {
+                            val action = BoardFragmentDirections.board2ChkDialog("지원 완료하였습니다.")
+                            navController.navigate(action)
+                        } catch (e: IllegalArgumentException) {
+                        }
+                    }
+
+                    CoroutineScope(Dispatchers.Main).launch {
+                        boardViewModel.getPostItems(token, object : CoroutinesErrorHandler {
+                            override fun onError(message: String) {
+                                if (message.contains("IllegalStateException")) {
+                                    Log.d("Report", "데이터 없음"); return; }
+
+                                try {
+                                    val action = BoardFragmentDirections.board2ChkDialog("네트워크 연결을 확인해주세요.")
+                                    navController.navigate(action)
+                                } catch (e: IllegalArgumentException) {
+                                }
+                            }
+                        })
                     }
                 }
             }
@@ -129,7 +156,7 @@ class BoardFragment : Fragment(), OnItemClick {
                 }
 
                 is ApiResponse.Success -> {
-                    boardAdapter = BoardAdapter(it.data.postItems, this); binding.recyclerView.adapter =
+                    boardAdapter = BoardAdapter(context, it.data.postItems, this); binding.recyclerView.adapter =
                         boardAdapter
                 }
 

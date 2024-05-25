@@ -326,6 +326,7 @@
             android:textColor="@color/text_color"/>
 
         <RelativeLayout
+            android:id="@+id/borderOfApplyBtn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
