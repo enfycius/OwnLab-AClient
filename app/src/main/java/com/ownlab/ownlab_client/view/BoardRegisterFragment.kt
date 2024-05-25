@@ -20,7 +20,8 @@ import com.ownlab.ownlab_client.viewmodels.BoardViewModel
 import com.ownlab.ownlab_client.viewmodels.TokenViewModel
 import com.ownlab.ownlab_client.viewmodels.interfaces.CoroutinesErrorHandler
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.IllegalFormatConversionException
+import java.text.ParseException
+import java.text.SimpleDateFormat
 
 @AndroidEntryPoint
 class BoardRegisterFragment: Fragment() {
@@ -32,6 +33,22 @@ class BoardRegisterFragment: Fragment() {
 
     private lateinit var navController: NavController
     private var token: String? = null
+
+    private fun checkDates(dateString: String): Boolean {
+        val dateFormat = SimpleDateFormat("yyyy.M.d")
+        dateFormat.isLenient = false
+
+        return try {
+            dateFormat.parse(dateString)
+            true
+        } catch (e: ParseException) {
+            false
+        }
+    }
+
+    private fun compareDates(startDate: String, endDate: String): Int {
+        return startDate.compareTo(endDate)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentBoardRegisterBinding.inflate(inflater, container, false)
@@ -115,23 +132,41 @@ class BoardRegisterFragment: Fragment() {
                 val endDate: String = binding.endDateField.text.toString()
                 val limitation: Int = binding.limitation.text.toString().toInt()
 
-                Log.d("Test2", startDate)
-                Log.d("Test2", endDate)
+                if (!this.checkDates(startDate) || !this.checkDates(endDate)) {
+                    try {
+                        val action =
+                            BoardRegisterFragmentDirections.boardRegister2ChkDialog("날짜를 제대로 입력해주세요.")
+                        navController.navigate(action)
+                    } catch (e: IllegalArgumentException) { }
+                } else {
+                    val resultOfCompare = compareDates(startDate, endDate)
 
-                boardViewModel.registerPostItems(
-                    token, PostItemRequest(
-                        title, contacts, assignee, registrationMethod, address, detailedLink,
-                        startDate, endDate, limitation
-                    ), object : CoroutinesErrorHandler {
-                        override fun onError(message: String) {
-                            Log.d("Test3", message)
+                    when {
+                        resultOfCompare <= 0 -> {
+                            boardViewModel.registerPostItems(
+                                token, PostItemRequest(
+                                    title, contacts, assignee, registrationMethod, address, detailedLink,
+                                    startDate, endDate, limitation
+                                ), object : CoroutinesErrorHandler {
+                                    override fun onError(message: String) {
+                                        Log.d("Test3", message)
+                                        try {
+                                            val action =
+                                                BoardRegisterFragmentDirections.boardRegister2ChkDialog("네트워크 연결을 확인해주세요.")
+                                            navController.navigate(action)
+                                        } catch (e: IllegalArgumentException) { }
+                                    }
+                                })
+                        } else -> {
                             try {
                                 val action =
-                                    BoardRegisterFragmentDirections.boardRegister2ChkDialog("네트워크 연결을 확인해주세요.")
+                                    BoardRegisterFragmentDirections.boardRegister2ChkDialog("시작일이 종료일보다 앞서거나 같아야 합니다.")
                                 navController.navigate(action)
                             } catch (e: IllegalArgumentException) { }
                         }
-                    })
+                    }
+
+                }
             } catch (e: NumberFormatException) {
                 Log.d("Test", "Type Conversion Error during Runtime")
 
