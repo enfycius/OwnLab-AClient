@@ -13,5 +13,7 @@ data class PostItem(
     @SerializedName("detailed_link") val detailed_link: String,
     @SerializedName("start_date") val start_date: String,
     @SerializedName("end_date") val end_date: String,
-    @SerializedName("registration_date") val registration_date: String
+    @SerializedName("registration_date") val registration_date: String,
+    @SerializedName("count") val count: Int,
+    @SerializedName("limitation") val limitation: Int,
 )

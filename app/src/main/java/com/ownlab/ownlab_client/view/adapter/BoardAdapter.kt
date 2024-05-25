@@ -1,5 +1,6 @@
 package com.ownlab.ownlab_client.view.adapter
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,12 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ownlab.ownlab_client.R
 import com.ownlab.ownlab_client.databinding.RecyclerviewPostItemBinding
 import com.ownlab.ownlab_client.models.PostItem
+import com.ownlab.ownlab_client.view.interfaces.OnItemClick
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-class BoardAdapter(private val postItems: List<PostItem>): RecyclerView.Adapter<BoardAdapter.BoardViewHolder>() {
-
+class BoardAdapter(private val context: Context?, val postItems: List<PostItem>, listener : OnItemClick): RecyclerView.Adapter<BoardAdapter.BoardViewHolder>() {
+    private val mCallback = listener
     class BoardViewHolder(private val binding: RecyclerviewPostItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val recruitDate = binding.recruitDate
         val title = binding.title
@@ -24,6 +26,8 @@ class BoardAdapter(private val postItems: List<PostItem>): RecyclerView.Adapter<
         val address = binding.address
         val detailedLink = binding.detailedLink
         val recruitmentDates = binding.recruitmentDates
+        val applyBtn = binding.applyBtn
+        val borderOfApplyBtn = binding.borderOfApplyBtn
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardViewHolder {
@@ -57,21 +61,38 @@ class BoardAdapter(private val postItems: List<PostItem>): RecyclerView.Adapter<
             holder.registrationMethod.text = postItems[position].registration_method
             holder.address.text = postItems[position].address
             holder.detailedLink.text = postItems[position].detailed_link
+            holder.applyBtn.text = "지원자 " + postItems[position].count.toString() + " / " + postItems[position].limitation.toString()
 
-            if (dates.size == 2) {
+            holder.applyBtn.setOnClickListener {
+                Log.d("Test", holder.email.text.toString())
+                Log.d("Test", postItems[position].id.toString())
+
+                mCallback.applyInfo(postItems[position].id, holder.email.text.toString())
+            }
+
+            Log.d("Test", dates.toString())
+            Log.d("Test", dates.size.toString())
+
+            if (postItems[position].start_date != "" && postItems[position].end_date != "") {
                 val startDate = sdf.parse(dates[0])
                 val endDate = sdf.parse(dates[1])
 
-                if (startDate != null && endDate != null && today in startDate..endDate) {
+                if (startDate != null && endDate != null && today in startDate..endDate && postItems[position].count < postItems[position].limitation) {
                     holder.recruitmentDates.text = "진행중"
                     val resources = holder.itemView.context.resources
                     val drawable = resources.getDrawable(R.drawable.circle)
                     holder.recruitmentDates.background = drawable
+                    holder.applyBtn.isEnabled = true
+                    holder.borderOfApplyBtn.setBackgroundDrawable(context!!.getDrawable(R.drawable.blue_box))
                 } else {
                     holder.recruitmentDates.text = "마감"
+                    holder.applyBtn.isEnabled = false
+                    holder.borderOfApplyBtn.setBackgroundDrawable(context!!.getDrawable(R.drawable.box))
                 }
             } else {
                 holder.recruitmentDates.text = "날짜 형식 오류"
+                holder.applyBtn.isEnabled = false
+                holder.borderOfApplyBtn.setBackgroundDrawable(context!!.getDrawable(R.drawable.box))
             }
         } catch (e: Exception) {
             Log.e("Error", "Error in onBindViewHolder: ${e.message}")

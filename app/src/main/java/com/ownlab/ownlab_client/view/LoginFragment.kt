@@ -15,7 +15,7 @@ import com.ownlab.ownlab_client.models.Auth
 import com.ownlab.ownlab_client.utils.ApiResponse
 import com.ownlab.ownlab_client.viewmodels.LoginViewModel
 import com.ownlab.ownlab_client.viewmodels.TokenViewModel
-import com.ownlab.ownlab_client.viewmodels.`interface`.CoroutinesErrorHandler
+import com.ownlab.ownlab_client.viewmodels.interfaces.CoroutinesErrorHandler
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

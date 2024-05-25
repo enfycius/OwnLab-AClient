@@ -326,6 +326,7 @@
             android:textColor="@color/text_color"/>
 
         <RelativeLayout
+            android:id="@+id/borderOfApplyBtn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -341,7 +342,8 @@
                 android:layout_marginStart="-15dp"
                 android:src="@drawable/icon_profile" />
 
-            <TextView
+            <Button
+                android:id="@+id/applyBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginStart="20dp"

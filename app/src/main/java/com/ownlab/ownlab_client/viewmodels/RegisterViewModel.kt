@@ -7,7 +7,7 @@ import com.ownlab.ownlab_client.models.Info
 import com.ownlab.ownlab_client.models.RegisterResponse
 import com.ownlab.ownlab_client.repository.AuthRepository
 import com.ownlab.ownlab_client.utils.ApiResponse
-import com.ownlab.ownlab_client.viewmodels.`interface`.CoroutinesErrorHandler
+import com.ownlab.ownlab_client.viewmodels.interfaces.CoroutinesErrorHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

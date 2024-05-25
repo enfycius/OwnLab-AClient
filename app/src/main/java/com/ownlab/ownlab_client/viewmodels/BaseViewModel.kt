@@ -3,7 +3,7 @@ package com.ownlab.ownlab_client.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ownlab.ownlab_client.viewmodels.`interface`.CoroutinesErrorHandler
+import com.ownlab.ownlab_client.viewmodels.interfaces.CoroutinesErrorHandler
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

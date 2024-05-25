@@ -11,4 +11,5 @@ data class PostItemRequest(
     @SerializedName("detailed_link") val detailedLink: String,
     @SerializedName("start_date") val startDate: String,
     @SerializedName("end_date") val endDate: String,
+    @SerializedName("limitation") val limitation: Int,
 )
