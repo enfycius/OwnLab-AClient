@@ -95,6 +95,29 @@ class BoardFragment : Fragment(), OnItemClick {
             }
         }
 
+        boardViewModel.registerResponse.observe(viewLifecycleOwner) {
+            when (it) {
+                is ApiResponse.Failure -> {
+                    try {
+                        val action = BoardFragmentDirections.board2ChkDialog("네트워크 연결을 확인해주세요.")
+                        navController.navigate(action)
+                    } catch (e: IllegalArgumentException) {
+                    }
+                }
+
+                is ApiResponse.Success -> {
+                    Log.d("Test", it.data.message)
+                    if (it.data.message.contains("Already applied")) {
+                        try {
+                            val action = BoardFragmentDirections.board2ChkDialog("이미 지원하셨습니다.")
+                            navController.navigate(action)
+                        } catch (e: IllegalArgumentException) {
+                        }
+                    }
+                }
+            }
+        }
+
         boardViewModel.postItemResponse.observe(viewLifecycleOwner) {
             when (it) {
                 is ApiResponse.Failure -> {
@@ -120,6 +143,8 @@ class BoardFragment : Fragment(), OnItemClick {
 
         boardViewModel.applyPostItem(token, applyPostRequest, object : CoroutinesErrorHandler {
             override fun onError(message: String) {
+                Log.d("Report", message)
+
                 if (message.contains("IllegalStateException")) {
                     Log.d("Report", "데이터 없음"); return; }
 
