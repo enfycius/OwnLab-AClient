@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginHorizontal="17dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="350dp"
         android:orientation="vertical"
         app:layout_anchorGravity="center"
         tools:ignore="MissingDefaultResource">
@@ -385,6 +385,59 @@
                 android:background="@drawable/icon_calendar"
                 app:layout_constraintEnd_toEndOf="@id/endDateField"
                 app:layout_constraintTop_toTopOf="@id/endDateField" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="모집인원"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="9dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="모집인원"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_brightness_1_24"
+                app:tint="@color/light_red" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <!-- 시작일 EditText -->
+            <EditText
+                android:id="@+id/limitation"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginEnd="5dp"
+                android:hint="모집인원(명)"
+                android:paddingLeft="10dp"
+                android:textSize="14sp"
+                android:background="@drawable/box"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -20,6 +20,7 @@ import com.ownlab.ownlab_client.viewmodels.BoardViewModel
 import com.ownlab.ownlab_client.viewmodels.TokenViewModel
 import com.ownlab.ownlab_client.viewmodels.interfaces.CoroutinesErrorHandler
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.IllegalFormatConversionException
 
 @AndroidEntryPoint
 class BoardRegisterFragment: Fragment() {
@@ -102,32 +103,44 @@ class BoardRegisterFragment: Fragment() {
         }
 
         binding.registerBtn.setOnClickListener {
-            val title: String = binding.title.text.toString()
-            val contacts: String = binding.contacts.text.toString()
-            val assignee: String = binding.assignee.text.toString()
-            val registrationMethod: String = binding.registrationMethod.text.toString()
-            val address: String = binding.address.text.toString()
-            val detailedLink: String = binding.detailedLink.text.toString()
-            val startDate: String = binding.startDateField.text.toString()
-            val endDate: String = binding.endDateField.text.toString()
 
-            Log.d("Test2", startDate)
-            Log.d("Test2", endDate)
+            try {
+                val title: String = binding.title.text.toString()
+                val contacts: String = binding.contacts.text.toString()
+                val assignee: String = binding.assignee.text.toString()
+                val registrationMethod: String = binding.registrationMethod.text.toString()
+                val address: String = binding.address.text.toString()
+                val detailedLink: String = binding.detailedLink.text.toString()
+                val startDate: String = binding.startDateField.text.toString()
+                val endDate: String = binding.endDateField.text.toString()
+                val limitation: Int = binding.limitation.text.toString().toInt()
 
-            boardViewModel.registerPostItems(
-                token, PostItemRequest(
-                    title, contacts, assignee, registrationMethod, address, detailedLink,
-                    startDate, endDate
-                ), object : CoroutinesErrorHandler {
-                    override fun onError(message: String) {
-                        Log.d("Test3", message)
-                        try {
-                            val action =
-                                BoardRegisterFragmentDirections.boardRegister2ChkDialog("네트워크 연결을 확인해주세요.")
-                            navController.navigate(action)
-                        } catch (e: IllegalArgumentException) { }
-                    }
-                })
+                Log.d("Test2", startDate)
+                Log.d("Test2", endDate)
+
+                boardViewModel.registerPostItems(
+                    token, PostItemRequest(
+                        title, contacts, assignee, registrationMethod, address, detailedLink,
+                        startDate, endDate, limitation
+                    ), object : CoroutinesErrorHandler {
+                        override fun onError(message: String) {
+                            Log.d("Test3", message)
+                            try {
+                                val action =
+                                    BoardRegisterFragmentDirections.boardRegister2ChkDialog("네트워크 연결을 확인해주세요.")
+                                navController.navigate(action)
+                            } catch (e: IllegalArgumentException) { }
+                        }
+                    })
+            } catch (e: NumberFormatException) {
+                Log.d("Test", "Type Conversion Error during Runtime")
+
+                try {
+                    val action =
+                        BoardRegisterFragmentDirections.boardRegister2ChkDialog("모집인원은 숫자 형식으로 입력해주세요.")
+                    navController.navigate(action)
+                } catch (e: IllegalArgumentException) { }
+            }
         }
     }
 }
