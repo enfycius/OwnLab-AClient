@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/applicant_management_nav"
+    app:startDestination="@id/applicantManagementFragment">
+
+    <fragment
+        android:id="@+id/applicantManagementFragment"
+        android:name="com.ownlab.ownlab_client.view.ApplicantManagementFragment"
+        android:label="지원자"
+        tools:layout="@layout/fragment_applicant_management">
+
+        <action
+            android:id="@+id/applicant_2_chk_dialog"
+            app:destination="@id/chk_dialog_nav"
+            app:popUpToInclusive="true">
+
+            <argument
+                android:name="chkMessage"
+                app:argType="string"
+                android:defaultValue="" />
+
+        </action>
+        <action
+            android:id="@+id/action_applicantManagementFragment2_to_boardFragment"
+            app:destination="@id/boardFragment" />
+    </fragment>
+
+    <include app:graph="@navigation/chk_dialog_nav" />
+</navigation>
