@@ -29,7 +29,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -61,6 +60,7 @@ import com.ownlab.ownlab_client.gray600
 import com.ownlab.ownlab_client.models.PostItem
 import com.ownlab.ownlab_client.subTextColor
 import com.ownlab.ownlab_client.textPrimaryColor
+import com.ownlab.ownlab_client.view.component.EmptyContentMessage
 import com.ownlab.ownlab_client.view.component.TopActionToolbar
 import kotlinx.coroutines.delay
 
@@ -297,32 +297,6 @@ fun TitleText() {
     }
 }
 
-
-@Composable
-fun NoContentUI() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 120.dp, start = 16.dp, end = 16.dp, bottom = 120.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            modifier = Modifier
-                .width(60.dp)
-                .height(60.dp),
-            painter = painterResource(id = R.drawable.emoji_speech_balloon_empty),
-            contentDescription = "등록된 내역이 없습니다."
-        )
-        Text(
-            modifier = Modifier.padding(top = 26.dp),
-            text = "등록된 내역이 없습니다.",
-            color = subTextColor,
-            fontSize = 14.sp,
-        )
-    }
-}
-
 @Composable
 fun BoxContent(index: Int) {
     Text(text = "Box $index", modifier = Modifier.padding(8.dp))
@@ -452,12 +426,12 @@ fun CompanyDetailsFooterBox() {
 fun JobPortalMainUI(navController: NavController) {
 
     LazyColumn {
-        item { TopActionToolbar()}
+        item { TopActionToolbar(navController) }
         item { InformationViewPager() }
         item { ImageList() }
         item { LocalSelection(navController) }
         item { TitleText() }
-        item { NoContentUI() }
+        item { EmptyContentMessage() }
         item { CompanyDetailsFooter() }
         item { CompanyDetailsFooterBox() }
     }

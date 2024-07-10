@@ -29,6 +29,7 @@ import com.ownlab.ownlab_client.R
 import com.ownlab.ownlab_client.gray100
 import com.ownlab.ownlab_client.subTextColor
 import com.ownlab.ownlab_client.textPrimaryColor
+import com.ownlab.ownlab_client.view.component.HorizontalDivider
 
 class MyPageScreen : Fragment() {
 
@@ -147,21 +148,6 @@ fun ProfileChoice(mainText: String, onClick: () -> Unit) {
             )
         }
     }
-}
-@Composable
-fun HorizontalDivider(
-    color: Color = Color.LightGray,
-    thickness: Dp = 1.dp,
-    modifier: Modifier = Modifier
-) {
-    Divider(
-        color = color,
-        thickness = thickness,
-        modifier = modifier
-            .padding(top = 20.dp, bottom = 9.dp)
-            .height(thickness)
-            .fillMaxWidth()
-    )
 }
 
 @Composable

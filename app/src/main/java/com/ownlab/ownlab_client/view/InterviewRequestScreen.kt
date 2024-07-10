@@ -46,6 +46,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.ownlab.ownlab_client.R
 import com.ownlab.ownlab_client.blue
+import com.ownlab.ownlab_client.view.component.CancleIcon
 import com.ownlab.ownlab_client.view.component.SettingBtn
 import com.ownlab.ownlab_client.view.component.TextWithRedAsterisk
 

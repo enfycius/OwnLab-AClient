@@ -10,9 +10,16 @@
         <action
             android:id="@+id/action_ownLabMainScreen_to_regionalSettingScreen"
             app:destination="@id/regionalSettingScreen" />
+        <action
+            android:id="@+id/action_ownLabMainScreen_to_jobFinderScreen"
+            app:destination="@id/jobFinderScreen" />
     </fragment>
     <fragment
         android:id="@+id/regionalSettingScreen"
         android:name="com.ownlab.ownlab_client.view.RegionalSettingScreen"
         android:label="RegionalSettingScreen" />
+    <fragment
+        android:id="@+id/jobFinderScreen"
+        android:name="com.ownlab.ownlab_client.view.JobFinderScreen"
+        android:label="JobFinderScreen" />
 </navigation>

@@ -45,42 +45,58 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.loginFragment -> {
                     toolbarTitle.text = "로그인"
+                    toolbar.visibility = View.VISIBLE
                 }
                 R.id.userAgreementFragment, R.id.registerFragment, R.id.bizRegisterFragment, R.id.registerationSuccessFragment -> {
                     toolbarTitle.text = "회원가입"
+                    toolbar.visibility = View.VISIBLE
                 }
 
                 R.id.mainFragment -> {
                     toolbarTitle.text = "평가관리"
+                    toolbar.visibility = View.VISIBLE
                 }
                 R.id.boardFragment ->{
                     toolbarTitle.text = "공고/지원자관리"
+                    toolbar.visibility = View.VISIBLE
                 }
                 R.id.applicantManagementFragment2->{
                     toolbarTitle.text = "공고/지원자관리"
+                    toolbar.visibility = View.VISIBLE
                 }
                 R.id.myPageScreen -> {
                     toolbarTitle.text= "마이페이지"
+                    toolbar.visibility = View.VISIBLE
                 }
 
                 R.id.ownLabMainScreen->{
                     toolbarTitle.text ="홈"
+                    toolbar.visibility = View.GONE
+                }
+                R.id.jobFinderScreen->{
+                    toolbarTitle.text ="알바 검색"
+                    toolbar.visibility = View.GONE
                 }
                 R.id.boardRegisterFragment->{
                     toolbarTitle.text= "채용공고등록"
+                    toolbar.visibility = View.VISIBLE
                 }
                 R.id.regionalSettingScreen->{
                     toolbarTitle.text="지역선택"
+                    toolbar.visibility = View.VISIBLE
                 }
                 R.id.resumeManagerScreen -> {
                     toolbarTitle.text = "이력서 관리"
+                    toolbar.visibility = View.VISIBLE
                 }
 
                 R.id.mainFragment -> toolbar.navigationIcon = null
                 R.id.boardFragment -> toolbar.navigationIcon = null
                 R.id.myPageScreen -> toolbar.navigationIcon = null
 
-                else -> hideBottomNav()
+                else -> {hideBottomNav()
+                    toolbar.visibility = View.VISIBLE
+                }
             }
             val hideHomeButtonIds = setOf(R.id.mainFragment, R.id.boardFragment, R.id.myPageScreen, R.id.ownLabMainScreen)
             toolbar.navigationIcon = if (hideHomeButtonIds.contains(destination.id)) null else toolbar.navigationIcon

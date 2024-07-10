@@ -46,6 +46,8 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.ownlab.ownlab_client.R
 import com.ownlab.ownlab_client.blue
+import com.ownlab.ownlab_client.view.component.ArrowDownIcon
+import com.ownlab.ownlab_client.view.component.CancleIcon
 import com.ownlab.ownlab_client.view.component.SettingBtn
 import com.ownlab.ownlab_client.view.component.TextWithRedAsterisk
 
@@ -118,30 +120,30 @@ fun RegionalSettingBackgroundBlock(
     }
 }
 
-@Composable
-fun CancleIcon(onClick: () -> Unit) {
-    val image: Painter = painterResource(id = R.drawable.icon_cancle)
-    Image(
-        painter = image,
-        contentDescription = "Cancel Icon",
-        modifier = Modifier
-            .width(30.dp)
-            .height(30.dp)
-            .clickable(onClick = onClick)
-    )
-}
-
-@Composable
-fun ArrowDownIcon() {
-    val image: Painter = painterResource(id = R.drawable.icon_arrow_down)
-    Image(
-        painter = image,
-        contentDescription = "Arrow Down Icon",
-        modifier = Modifier
-            .width(25.dp)
-            .height(25.dp)
-    )
-}
+//@Composable
+//fun CancleIcon(onClick: () -> Unit) {
+//    val image: Painter = painterResource(id = R.drawable.icon_cancle)
+//    Image(
+//        painter = image,
+//        contentDescription = "Cancel Icon",
+//        modifier = Modifier
+//            .width(30.dp)
+//            .height(30.dp)
+//            .clickable(onClick = onClick)
+//    )
+//}
+//
+//@Composable
+//fun ArrowDownIcon() {
+//    val image: Painter = painterResource(id = R.drawable.icon_arrow_down)
+//    Image(
+//        painter = image,
+//        contentDescription = "Arrow Down Icon",
+//        modifier = Modifier
+//            .width(25.dp)
+//            .height(25.dp)
+//    )
+//}
 
 @Composable
 fun RegionSelectComponent(text: String, options: List<String>) {
