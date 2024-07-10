@@ -6,5 +6,13 @@
     <fragment
         android:id="@+id/ownLabMainScreen"
         android:name="com.ownlab.ownlab_client.view.OwnLabMainScreen"
-        android:label="OwnLabMainScreen" />
+        android:label="OwnLabMainScreen" >
+        <action
+            android:id="@+id/action_ownLabMainScreen_to_regionalSettingScreen"
+            app:destination="@id/regionalSettingScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/regionalSettingScreen"
+        android:name="com.ownlab.ownlab_client.view.RegionalSettingScreen"
+        android:label="RegionalSettingScreen" />
 </navigation>

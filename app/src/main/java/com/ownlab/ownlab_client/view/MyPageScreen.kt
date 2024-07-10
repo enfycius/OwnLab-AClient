@@ -22,8 +22,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.Dp
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.findNavController
+import com.ownlab.ownlab_client.R
 import com.ownlab.ownlab_client.gray100
 import com.ownlab.ownlab_client.subTextColor
 import com.ownlab.ownlab_client.textPrimaryColor
@@ -45,7 +47,7 @@ class MyPageScreen : Fragment() {
 }
 
 @Composable
-fun MyProfile() {
+fun MyProfile(name:String, userType:String) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -54,12 +56,12 @@ fun MyProfile() {
         Row(
             modifier = Modifier.fillMaxWidth()
         ) {
-            Box(
+            Image(
+                painter = painterResource(id = R.drawable.logo_fullsize),
+                contentDescription = "icon plus",
                 modifier = Modifier
-                    .padding(6.dp)
                     .width(90.dp)
                     .fillMaxHeight()
-                    .background(gray100)
             )
             Box(
                 modifier = Modifier
@@ -70,13 +72,13 @@ fun MyProfile() {
             ) {
                 Row {
                     Text(
-                        text = "임지현",
+                        text = name,
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                     )
                     Spacer(modifier = Modifier.width(10.dp))
                     Text(
-                        text = "구직자회원",
+                        text = userType,
                         fontSize = 11.sp,
                         color = subTextColor,
                         modifier = Modifier
@@ -106,7 +108,7 @@ fun MyProfile() {
 }
 
 @Composable
-fun myPageTitle(title: String) {
+fun MainTitle(title: String) {
     Text(
         text = title,
         fontSize = 14.sp,
@@ -121,12 +123,13 @@ fun myPageTitle(title: String) {
 }
 
 @Composable
-fun profileChoice(mainText: String, onCLick: () -> Unit) {
+fun ProfileChoice(mainText: String, onClick: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .height(42.dp)
-            .clickable(onClick = onCLick)
+            .clickable(onClick = onClick)
+            //.padding(start = 16.dp, end = 16.dp)
     ) {
         Row(
             modifier = Modifier.fillMaxSize(),
@@ -134,8 +137,7 @@ fun profileChoice(mainText: String, onCLick: () -> Unit) {
         ) {
             Text(
                 text = mainText,
-                modifier = Modifier
-                    .weight(1f)
+                modifier = Modifier.weight(1f)
             )
             Spacer(modifier = Modifier.weight(1f))
             Image(
@@ -146,7 +148,6 @@ fun profileChoice(mainText: String, onCLick: () -> Unit) {
         }
     }
 }
-
 @Composable
 fun HorizontalDivider(
     color: Color = Color.LightGray,
@@ -164,24 +165,43 @@ fun HorizontalDivider(
 }
 
 @Composable
-fun MyPageScreen(navController: androidx.navigation.NavController) {
+fun MyPageScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
     ) {
-        myPageTitle(title = "My")
-        profileChoice(mainText = "이력서 및 경력관리", onCLick = {})
-        profileChoice(mainText = "나의 스펙", onCLick = {})
-        profileChoice(mainText = "AI 역량분석", onCLick = {})
-        profileChoice(mainText = "지원 면접현황", onCLick = {})
-        profileChoice(mainText = "스크랩공고", onCLick = {})
-        profileChoice(mainText = "평가 관리", onCLick = {})
+        MyProfile(name = "알바 HR", userType="기업 회원")
+        MainTitle(title = "My")
+        ProfileChoice(mainText = "이력서 및 경력 관리") {
+            navController.navigate(R.id.action_myPageScreen_to_resumeManagerScreen)
+        }
+        ProfileChoice(mainText = "나의 스펙"){
+
+        }
+        ProfileChoice(mainText = "AI 역량분석"){
+
+        }
+        ProfileChoice(mainText = "지원 면접현황"){
+
+        }
+        ProfileChoice(mainText = "스크랩공고"){
+
+        }
+        ProfileChoice(mainText = "평가 관리"){
+
+        }
         HorizontalDivider()
-        myPageTitle(title = "고객센터")
-        profileChoice(mainText = "공지사항", onCLick = {})
-        profileChoice(mainText = "자주 묻는 질문", onCLick = {})
-        profileChoice(mainText = "1:1 문의", onCLick = {})
+        MainTitle(title = "고객센터")
+        ProfileChoice(mainText = "공지사항"){
+
+        }
+        ProfileChoice(mainText = "자주 묻는 질문"){
+
+        }
+        ProfileChoice(mainText = "1:1 문의"){
+
+        }
     }
 }
 

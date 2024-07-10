@@ -69,6 +69,12 @@ class MainActivity : AppCompatActivity() {
                 R.id.boardRegisterFragment->{
                     toolbarTitle.text= "채용공고등록"
                 }
+                R.id.regionalSettingScreen->{
+                    toolbarTitle.text="지역선택"
+                }
+                R.id.resumeManagerScreen -> {
+                    toolbarTitle.text = "이력서 관리"
+                }
 
                 R.id.mainFragment -> toolbar.navigationIcon = null
                 R.id.boardFragment -> toolbar.navigationIcon = null
@@ -89,7 +95,7 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.loginFragment -> hideBottomNav()
+                R.id.loginFragment, R.id.regionalSettingScreen -> hideBottomNav()
                 else -> showBottomNav()
             }
         }
