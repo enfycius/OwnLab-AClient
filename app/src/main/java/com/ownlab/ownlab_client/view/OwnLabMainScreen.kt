@@ -9,6 +9,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -47,6 +48,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.findNavController
 import com.ownlab.ownlab_client.R
 import com.ownlab.ownlab_client.gray100
 import com.ownlab.ownlab_client.gray200
@@ -55,6 +60,8 @@ import com.ownlab.ownlab_client.gray600
 import com.ownlab.ownlab_client.models.PostItem
 import com.ownlab.ownlab_client.subTextColor
 import com.ownlab.ownlab_client.textPrimaryColor
+import com.ownlab.ownlab_client.view.component.EmptyContentMessage
+import com.ownlab.ownlab_client.view.component.TopActionToolbar
 import kotlinx.coroutines.delay
 
 class OwnLabMainScreen : Fragment() {
@@ -65,7 +72,8 @@ class OwnLabMainScreen : Fragment() {
     ): View {
         return ComposeView(requireContext()).apply {
             setContent {
-                JobPortalMainUI()
+                val navController = findNavController()
+                JobPortalMainUI(navController)
             }
         }
     }
@@ -231,10 +239,11 @@ fun ImageWithText(
 
 
 @Composable
-fun LocalSelection() {
+fun LocalSelection(navController: NavController) {
     Box(
         modifier = Modifier
             .padding(start = 16.dp, end = 16.dp)
+            .clickable { navController.navigate(R.id.action_ownLabMainScreen_to_regionalSettingScreen) }
     ) {
         Box(
             modifier = Modifier
@@ -285,32 +294,6 @@ fun TitleText() {
                 fontWeight = FontWeight.Bold
             )
         }
-    }
-}
-
-
-@Composable
-fun NoContentUI() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 120.dp, start = 16.dp, end = 16.dp, bottom = 120.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            modifier = Modifier
-                .width(60.dp)
-                .height(60.dp),
-            painter = painterResource(id = R.drawable.emoji_speech_balloon_empty),
-            contentDescription = "등록된 내역이 없습니다."
-        )
-        Text(
-            modifier = Modifier.padding(top = 26.dp),
-            text = "등록된 내역이 없습니다.",
-            color = subTextColor,
-            fontSize = 14.sp,
-        )
     }
 }
 
@@ -440,14 +423,15 @@ fun CompanyDetailsFooterBox() {
 
 
 @Composable
-fun JobPortalMainUI() {
+fun JobPortalMainUI(navController: NavController) {
 
     LazyColumn {
+        item { TopActionToolbar(navController) }
         item { InformationViewPager() }
         item { ImageList() }
-        item { LocalSelection() }
+        item { LocalSelection(navController) }
         item { TitleText() }
-        item { NoContentUI() }
+        item { EmptyContentMessage() }
         item { CompanyDetailsFooter() }
         item { CompanyDetailsFooterBox() }
     }
@@ -456,5 +440,6 @@ fun JobPortalMainUI() {
 @Preview
 @Composable
 fun OwnLabMainScreenPreview() {
-    JobPortalMainUI()
+    val navController = rememberNavController()
+    JobPortalMainUI(navController)
 }

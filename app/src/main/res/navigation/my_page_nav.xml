@@ -7,5 +7,13 @@
     <fragment
         android:id="@+id/myPageScreen"
         android:name="com.ownlab.ownlab_client.view.MyPageScreen"
-        android:label="MyPageScreen" />
+        android:label="MyPageScreen" >
+        <action
+            android:id="@+id/action_myPageScreen_to_resumeManagerScreen"
+            app:destination="@id/resumeManagerScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/resumeManagerScreen"
+        android:name="com.ownlab.ownlab_client.view.ResumeManagerScreen"
+        android:label="ResumeManagerScreen" />
 </navigation>
