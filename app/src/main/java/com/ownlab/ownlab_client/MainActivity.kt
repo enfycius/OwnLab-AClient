@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.loginFragment -> {
                     toolbarTitle.text = "로그인"
                     toolbar.visibility = View.VISIBLE
+                    hideBottomNav()
                 }
                 R.id.userAgreementFragment, R.id.registerFragment, R.id.bizRegisterFragment, R.id.registerationSuccessFragment -> {
                     toolbarTitle.text = "회원가입"
@@ -94,7 +95,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.boardFragment -> toolbar.navigationIcon = null
                 R.id.myPageScreen -> toolbar.navigationIcon = null
 
-                else -> {hideBottomNav()
+                else -> {
+                    hideBottomNav()
                     toolbar.visibility = View.VISIBLE
                 }
             }
@@ -111,7 +113,7 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.loginFragment, R.id.regionalSettingScreen -> hideBottomNav()
+                R.id.loginFragment, R.id.regionalSettingScreen, R.id.userAgreementFragment, R.id.registerFragment, R.id.bizRegisterFragment, R.id.registerationSuccessFragment -> hideBottomNav()
                 else -> showBottomNav()
             }
         }
