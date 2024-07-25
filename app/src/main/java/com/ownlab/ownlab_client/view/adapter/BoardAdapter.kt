@@ -4,10 +4,12 @@ import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ownlab.ownlab_client.R
 import com.ownlab.ownlab_client.databinding.RecyclerviewPostItemBinding
 import com.ownlab.ownlab_client.models.PostItem
+import com.ownlab.ownlab_client.view.BoardFragmentDirections
 import com.ownlab.ownlab_client.view.interfaces.OnItemClick
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -20,12 +22,12 @@ class BoardAdapter(private val context: Context?, val postItems: List<PostItem>,
         val title = binding.title
         val registrationDate = binding.registrationDate
         val assignee = binding.assignee
-        val contacts = binding.contacts
-        val email = binding.email
-        val registrationMethod = binding.registrationMethod
-        val address = binding.address
-        val detailedLink = binding.detailedLink
-        val recruitmentDates = binding.recruitmentDates
+//        val contacts = binding.contacts
+//        val email = binding.email
+//        val registrationMethod = binding.registrationMethod
+//        val address = binding.address
+//        val detailedLink = binding.detailedLink
+//        val recruitmentDates = binding.recruitmentDates
         val applyBtn = binding.applyBtn
         val borderOfApplyBtn = binding.borderOfApplyBtn
     }
@@ -56,18 +58,23 @@ class BoardAdapter(private val context: Context?, val postItems: List<PostItem>,
             holder.title.text = postItems[position].title
             holder.registrationDate.text = postItems[position].registration_date
             holder.assignee.text = postItems[position].assignee
-            holder.contacts.text = postItems[position].contacts
-            holder.email.text = postItems[position].email
-            holder.registrationMethod.text = postItems[position].registration_method
-            holder.address.text = postItems[position].address
-            holder.detailedLink.text = postItems[position].detailed_link
+//            holder.contacts.text = postItems[position].contacts
+//            holder.email.text = postItems[position].email
+//            holder.registrationMethod.text = postItems[position].registration_method
+//            holder.address.text = postItems[position].address
+//            holder.detailedLink.text = postItems[position].detailed_link
             holder.applyBtn.text = "지원자 " + postItems[position].count.toString() + " / " + postItems[position].limitation.toString()
 
+            holder.itemView.setOnClickListener {
+                val action = BoardFragmentDirections.actionBoardFragmentToDetailFragment(postItems[position])
+                it.findNavController().navigate(action)
+            }
+
             holder.applyBtn.setOnClickListener {
-                Log.d("Test", holder.email.text.toString())
+//                Log.d("Test", holder.email.text.toString())
                 Log.d("Test", postItems[position].id.toString())
 
-                mCallback.applyInfo(postItems[position].id, holder.email.text.toString())
+//                mCallback.applyInfo(postItems[position].id, holder.email.text.toString())
             }
 
             Log.d("Test", dates.toString())
@@ -78,21 +85,21 @@ class BoardAdapter(private val context: Context?, val postItems: List<PostItem>,
                 val endDate = sdf.parse(dates[1])
 
                 if (startDate != null && endDate != null && today in startDate..endDate && postItems[position].count < postItems[position].limitation) {
-                    holder.recruitmentDates.text = "진행중"
+//                    holder.recruitmentDates.text = "진행중"
                     val resources = holder.itemView.context.resources
                     val drawable = resources.getDrawable(R.drawable.circle)
-                    holder.recruitmentDates.background = drawable
-                    holder.applyBtn.isEnabled = true
-                    holder.borderOfApplyBtn.setBackgroundDrawable(context!!.getDrawable(R.drawable.blue_box))
+//                    holder.recruitmentDates.background = drawable
+//                    holder.applyBtn.isEnabled = true
+                   holder.borderOfApplyBtn.setBackgroundDrawable(context!!.getDrawable(R.drawable.blue_box))
                 } else {
-                    holder.recruitmentDates.text = "마감"
-                    holder.applyBtn.isEnabled = false
-                    holder.borderOfApplyBtn.setBackgroundDrawable(context!!.getDrawable(R.drawable.box))
+//                    holder.recruitmentDates.text = "마감"
+//                    holder.applyBtn.isEnabled = false
+                 holder.borderOfApplyBtn.setBackgroundDrawable(context!!.getDrawable(R.drawable.box))
                 }
             } else {
-                holder.recruitmentDates.text = "날짜 형식 오류"
-                holder.applyBtn.isEnabled = false
-                holder.borderOfApplyBtn.setBackgroundDrawable(context!!.getDrawable(R.drawable.box))
+//                holder.recruitmentDates.text = "날짜 형식 오류"
+//                holder.applyBtn.isEnabled = false
+              holder.borderOfApplyBtn.setBackgroundDrawable(context!!.getDrawable(R.drawable.box))
             }
         } catch (e: Exception) {
             Log.e("Error", "Error in onBindViewHolder: ${e.message}")
