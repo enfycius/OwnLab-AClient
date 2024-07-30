@@ -36,7 +36,7 @@ fun TopActionToolbar(navController: NavController) {
             .fillMaxWidth()
             .fillMaxHeight()
             .clickable {
-                navController.navigate(R.id.jobFinderScreen)
+                navController.navigate(R.id.job_search_nav)
             }
     ) {
         Image(

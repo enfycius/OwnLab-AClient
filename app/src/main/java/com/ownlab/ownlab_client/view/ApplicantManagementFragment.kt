@@ -12,14 +12,10 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ownlab.ownlab_client.R
-import com.ownlab.ownlab_client.R.*
 import com.ownlab.ownlab_client.databinding.FragmentApplicantManagementBinding
-import com.ownlab.ownlab_client.models.ApplyPostRequest
 import com.ownlab.ownlab_client.utils.ApiResponse
 //import com.ownlab.ownlab_client.view.ApplicantManagementFragmentDirections.Companion.applicant2ChkDialog
 import com.ownlab.ownlab_client.view.adapter.ApplicantManagementAdapter
-import com.ownlab.ownlab_client.view.adapter.BoardAdapter
-import com.ownlab.ownlab_client.view.interfaces.OnItemClick
 import com.ownlab.ownlab_client.viewmodels.ApplicantManagementViewModel
 import com.ownlab.ownlab_client.viewmodels.TokenViewModel
 import com.ownlab.ownlab_client.viewmodels.interfaces.CoroutinesErrorHandler

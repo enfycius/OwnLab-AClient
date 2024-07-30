@@ -17,7 +17,8 @@ data class PostItem(
     @SerializedName("end_date") val end_date: String,
     @SerializedName("registration_date") val registration_date: String,
     @SerializedName("count") val count: Int,
-    @SerializedName("limitation") val limitation: Int
+    @SerializedName("limitation") val limitation: Int,
+    var isBookmarked: Boolean = false // 북마크 상태 추가
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -32,7 +33,8 @@ data class PostItem(
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readInt(),
-        parcel.readInt()
+        parcel.readInt(),
+        parcel.readByte() != 0.toByte() // isBookmarked 읽기
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -49,6 +51,7 @@ data class PostItem(
         parcel.writeString(registration_date)
         parcel.writeInt(count)
         parcel.writeInt(limitation)
+        parcel.writeByte(if (isBookmarked) 1 else 0) // isBookmarked 쓰기
     }
 
     override fun describeContents(): Int {

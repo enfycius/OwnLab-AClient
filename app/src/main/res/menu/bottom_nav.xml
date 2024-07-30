@@ -10,9 +10,16 @@
         app:actionLayout="@layout/menu_item_layout"/>
 
     <item
-        android:id="@+id/board_nav"
+        android:id="@+id/job_search_nav"
         android:title="검색"
         android:icon="@drawable/icon_search"
+        app:showAsAction="always"
+        app:actionLayout="@layout/menu_item_layout"/>
+
+    <item
+        android:id="@+id/board_nav"
+        android:title="공고/지원자"
+        android:icon="@drawable/icon_bn_recruit"
         app:showAsAction="always"
         app:actionLayout="@layout/menu_item_layout"/>
 

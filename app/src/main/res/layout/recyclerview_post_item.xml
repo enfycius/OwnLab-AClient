@@ -20,7 +20,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="24dp"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginHorizontal="8dp"
         >
 
         <TextView
@@ -44,7 +44,7 @@
             android:textSize="10sp" />
 
         <ImageView
-            android:id="@+id/moreImageView"
+            android:id="@+id/bookMark"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginLeft="3dp"
@@ -56,7 +56,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
+            android:layout_marginHorizontal="8dp"
             >
 
             <TextView
@@ -83,18 +83,18 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:layout_marginHorizontal="16dp">
+            android:layout_marginHorizontal="8dp">
 
             <TextView
                 android:id="@+id/recruitDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/border"
+                android:layout_marginEnd="3dp"
+                android:background="@drawable/border_background"
                 android:padding="8dp"
-                android:text="assignee"
+                android:text="recruitDate"
+                android:textSize="9sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
@@ -103,14 +103,13 @@
                 android:id="@+id/assignee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/border"
+                android:background="@drawable/border_background"
                 android:padding="8dp"
-                android:text="recruitDate"
+                android:text="assignee"
+                android:layout_marginLeft="8dp"
+                android:textSize="9sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/recruitDate"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/recruitDate"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -120,25 +119,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_marginHorizontal="16dp">
+            android:layout_marginTop="7dp"
+            android:layout_marginHorizontal="8dp">
 
             <TextView
                 android:id="@+id/regionTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/border"
                 android:padding="8dp"
                 android:text="해당 지역"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
+
+            <TextView
+                android:id="@+id/dotTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="•"
+                app:layout_constraintStart_toEndOf="@id/regionTextView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.5" />
+
             <TextView
                 android:id="@+id/salaryTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/border"
                 android:padding="8dp"
                 android:text="연봉"
                 app:layout_constraintBottom_toBottomOf="parent"

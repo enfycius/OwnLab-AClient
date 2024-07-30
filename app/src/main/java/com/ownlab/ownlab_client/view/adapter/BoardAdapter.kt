@@ -30,6 +30,7 @@ class BoardAdapter(private val context: Context?, val postItems: List<PostItem>,
 //        val recruitmentDates = binding.recruitmentDates
         val applyBtn = binding.applyBtn
         val borderOfApplyBtn = binding.borderOfApplyBtn
+        val bookMark = binding.bookMark
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardViewHolder {
@@ -64,6 +65,24 @@ class BoardAdapter(private val context: Context?, val postItems: List<PostItem>,
 //            holder.address.text = postItems[position].address
 //            holder.detailedLink.text = postItems[position].detailed_link
             holder.applyBtn.text = "지원자 " + postItems[position].count.toString() + " / " + postItems[position].limitation.toString()
+
+
+            holder.bookMark.setImageResource(
+                if (postItems[position].isBookmarked)
+                    R.drawable.icon_bookmark_filled__1_
+                else
+                    R.drawable.icon_bookmark_filled
+            )
+
+            holder.bookMark.setOnClickListener {
+                postItems[position].isBookmarked = !postItems[position].isBookmarked
+                holder.bookMark.setImageResource(
+                    if (postItems[position].isBookmarked)
+                        R.drawable.icon_bookmark_filled__1_
+                    else
+                        R.drawable.icon_bookmark_filled
+                )
+            }
 
             holder.itemView.setOnClickListener {
                 val action = BoardFragmentDirections.actionBoardFragmentToDetailFragment(postItems[position])
