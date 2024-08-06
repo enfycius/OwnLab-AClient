@@ -120,31 +120,6 @@ fun RegionalSettingBackgroundBlock(
     }
 }
 
-//@Composable
-//fun CancleIcon(onClick: () -> Unit) {
-//    val image: Painter = painterResource(id = R.drawable.icon_cancle)
-//    Image(
-//        painter = image,
-//        contentDescription = "Cancel Icon",
-//        modifier = Modifier
-//            .width(30.dp)
-//            .height(30.dp)
-//            .clickable(onClick = onClick)
-//    )
-//}
-//
-//@Composable
-//fun ArrowDownIcon() {
-//    val image: Painter = painterResource(id = R.drawable.icon_arrow_down)
-//    Image(
-//        painter = image,
-//        contentDescription = "Arrow Down Icon",
-//        modifier = Modifier
-//            .width(25.dp)
-//            .height(25.dp)
-//    )
-//}
-
 @Composable
 fun RegionSelectComponent(text: String, options: List<String>) {
     var expanded by remember { mutableStateOf(false) }

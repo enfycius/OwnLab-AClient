@@ -1,6 +1,7 @@
 package com.ownlab.ownlab_client.repository
 
 import com.ownlab.ownlab_client.data.LocalDataSource
+import com.ownlab.ownlab_client.models.PostItem
 
 class SearchRepository(private val localDataSource: LocalDataSource) {
 

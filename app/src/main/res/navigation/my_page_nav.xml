@@ -16,4 +16,5 @@
         android:id="@+id/resumeManagerScreen"
         android:name="com.ownlab.ownlab_client.view.ResumeManagerScreen"
         android:label="ResumeManagerScreen" />
+    <include app:graph="@navigation/chk_dialog_nav" />
 </navigation>

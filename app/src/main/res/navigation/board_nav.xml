@@ -52,5 +52,13 @@
         <argument
             android:name="postItem"
             app:argType="com.ownlab.ownlab_client.models.PostItem" />
+        <action
+            android:id="@+id/action_detailFragment_to_chk_dialog_nav"
+            app:destination="@id/chk_dialog_nav" >
+            <argument
+                android:name="chkMessage"
+                app:argType="string"
+                android:defaultValue="" />
+        </action>
     </fragment>
 </navigation>
