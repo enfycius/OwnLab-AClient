@@ -1,11 +1,13 @@
 package com.ownlab.ownlab_client.service
 
 import com.ownlab.ownlab_client.models.Resume
+import com.ownlab.ownlab_client.models.ResumeListResponse
 import com.ownlab.ownlab_client.models.ResumeResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
@@ -44,4 +46,9 @@ interface ResumeApi {
         @Part("ps") ps: RequestBody,
         @Part("open_permission") openPermission: RequestBody
     ): Response<ResumeResponse>
+
+    @POST("resume/get_resume")
+    suspend fun getResume(
+        @Header("Authorization") token: String
+    ): Response<ResumeListResponse>
 }

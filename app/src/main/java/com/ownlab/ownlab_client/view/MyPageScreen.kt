@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -48,7 +49,7 @@ class MyPageScreen : Fragment() {
 }
 
 @Composable
-fun MyProfile(name:String, userType:String) {
+fun MyProfile(name: String, userType: String, imagePainter: Painter? = null) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -90,17 +91,18 @@ fun MyProfile(name:String, userType:String) {
                 }
                 Column {
                     Spacer(modifier = Modifier.height(20.dp))
-                    Box(
-                        modifier = Modifier
-                            .padding(
-                                top = 15.dp
+                    imagePainter?.let {
+                        Box(
+                            modifier = Modifier
+                                .padding(
+                                    top = 15.dp
+                                )
+                        ) {
+                            Image(
+                                painter = it,
+                                contentDescription = "",
                             )
-
-                    ) {
-                        Image(
-                            painter = painterResource(id = com.ownlab.ownlab_client.R.drawable.edit_profile),
-                            contentDescription = "",
-                        )
+                        }
                     }
                 }
             }
@@ -152,30 +154,19 @@ fun ProfileChoice(mainText: String, onClick: () -> Unit) {
 
 @Composable
 fun MyPageScreen(navController: NavController) {
+    val profileImage = painterResource(id = R.drawable.edit_profile)
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
     ) {
-        MyProfile(name = "알바 HR", userType="기업 회원")
+        MyProfile(name = "알바 HR", userType="기업 회원", imagePainter = profileImage)
         MainTitle(title = "My")
-        ProfileChoice(mainText = "이력서 및 경력 관리") {
+        ProfileChoice(mainText = "이력서 작성") {
             navController.navigate(R.id.action_myPageScreen_to_resumeManagerScreen)
         }
-        ProfileChoice(mainText = "나의 스펙"){
-
-        }
-        ProfileChoice(mainText = "AI 역량분석"){
-
-        }
-        ProfileChoice(mainText = "지원 면접현황"){
-
-        }
-        ProfileChoice(mainText = "스크랩공고"){
-
-        }
-        ProfileChoice(mainText = "평가 관리"){
-
+        ProfileChoice(mainText = "이력서 보기"){
+            navController.navigate(R.id.action_myPageScreen_to_resumeListScreen)
         }
         HorizontalDivider()
         MainTitle(title = "고객센터")

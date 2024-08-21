@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ownlab.ownlab_client.textPrimaryColor
 
 @Composable
 fun InputTextFieldUI(
@@ -143,6 +144,44 @@ fun InputInformation(
                     unfocusedIndicatorColor = Color.Transparent
                 )
             )
+        }
+    }
+}
+
+@Composable
+fun InformationText(
+    mainTitle:String,
+    mainText: String,
+    modifier: Modifier = Modifier
+) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(top = 8.dp)
+            .background(Color.White),
+        contentAlignment = Alignment.CenterStart
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(
+                text = mainTitle,
+                color = Color.Gray,
+                modifier = Modifier
+                    .padding(start = 10.dp)
+                    .width(100.dp)
+                    .align(Alignment.CenterVertically)
+            )
+            Text(
+                text = mainText,
+                color = textPrimaryColor,
+                modifier = Modifier
+                    .padding(start = 10.dp)
+                    .width(100.dp)
+                    .align(Alignment.CenterVertically)
+            )
+
         }
     }
 }

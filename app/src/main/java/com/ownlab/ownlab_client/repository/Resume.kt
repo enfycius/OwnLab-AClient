@@ -1,7 +1,10 @@
 package com.ownlab.ownlab_client.repository
 
+import android.util.Log
 import com.ownlab.ownlab_client.models.Resume
+import com.ownlab.ownlab_client.models.ResumeListResponse
 import com.ownlab.ownlab_client.models.ResumeResponse
+import com.ownlab.ownlab_client.models.mapJsonArrayToResume
 import com.ownlab.ownlab_client.service.ResumeApi
 import com.ownlab.ownlab_client.utils.ApiResponse
 import kotlinx.coroutines.flow.Flow
@@ -64,6 +67,28 @@ class ResumeRepository @Inject constructor(private val resumeApi: ResumeApi) {
                 emit(ApiResponse.Failure(errorBody, response.code()))
             }
         } catch (e: Exception) {
+            emit(ApiResponse.Failure(e.message ?: "Unknown error", -1))
+        }
+    }
+    fun getResume(token: String?): Flow<ApiResponse<ResumeListResponse>> = flow {
+        try {
+            val response = resumeApi.getResume(token!!)
+
+            if (response.isSuccessful) {
+                val body = response.body()
+                if (body != null) {
+                    Log.d("ResumeRepository", "Fetched resumes:")
+                    emit(ApiResponse.Success(body))
+                } else {
+                    emit(ApiResponse.Failure("Response body is null", response.code()))
+                }
+            } else {
+                val errorBody = response.errorBody()?.string() ?: "Unknown error"
+                Log.e("ResumeRepository", "API error: $errorBody")
+                emit(ApiResponse.Failure(errorBody, response.code()))
+            }
+        } catch (e: Exception) {
+            Log.e("ResumeRepository", "Exception: ${e.message}")
             emit(ApiResponse.Failure(e.message ?: "Unknown error", -1))
         }
     }

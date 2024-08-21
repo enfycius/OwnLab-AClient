@@ -3,12 +3,16 @@ package com.ownlab.ownlab_client.viewmodels
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import com.google.gson.Gson
 import com.ownlab.ownlab_client.models.Resume
 import com.ownlab.ownlab_client.models.ResumeResponse
+import com.ownlab.ownlab_client.models.mapJsonArrayToResume
 import com.ownlab.ownlab_client.repository.ResumeRepository
 import com.ownlab.ownlab_client.utils.ApiResponse
 import com.ownlab.ownlab_client.viewmodels.interfaces.CoroutinesErrorHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import java.io.File
@@ -49,6 +53,35 @@ class ResumeViewModel @Inject constructor(
 
     private val _resumeResponse = MutableLiveData<ApiResponse<ResumeResponse>>()
     val resumeResponse: LiveData<ApiResponse<ResumeResponse>> get() = _resumeResponse
+    private val _resumeListResponse = MutableLiveData<ApiResponse<List<Resume>>>()
+    val resumeListResponse: LiveData<ApiResponse<List<Resume>>> get() = _resumeListResponse
+
+    fun fetchResumes(token: String) {
+        viewModelScope.launch {
+            resumeRepo.getResume(token).collect { response ->
+                when (response) {
+                    is ApiResponse.Success -> {
+                        Log.d("ResumeViewModel", "API Response: $response")
+                        try {
+                            val resumeListResponseData = response.data
+                            val resumes = mapJsonArrayToResume(resumeListResponseData.resume)
+                            _resumeListResponse.value = ApiResponse.Success(resumes)
+                        } catch (e: Exception) {
+                            Log.e("ResumeViewModelError", "Mapping error: ${e.message}")
+                            _resumeListResponse.value = ApiResponse.Failure("Mapping error", -1)
+                        }
+                    }
+                    is ApiResponse.Failure -> {
+                        Log.d("ResumeViewModelError", "API Response: $response")
+                        _resumeListResponse.value = ApiResponse.Failure(response.errorMessage, response.code)
+                    }
+                }
+            }
+        }
+    }
+    private fun mapJsonArrayToResume(jsonString: String): Resume {
+        return Gson().fromJson(jsonString, Resume::class.java)
+    }
 
     fun addResume(token: String?, coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(_resumeResponse, coroutinesErrorHandler) {
         val resume = Resume(
@@ -85,6 +118,7 @@ class ResumeViewModel @Inject constructor(
          val file = profileFile.value?: throw IllegalArgumentException("Profile image is required")
         resumeRepo.addResume(token, resume, file)
     }
+
 
     fun Resume.toRequestBodyMap(): Map<String, RequestBody> {
         return mapOf(

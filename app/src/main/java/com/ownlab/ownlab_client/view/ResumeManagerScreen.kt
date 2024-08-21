@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -34,11 +33,9 @@ import androidx.navigation.findNavController
 import com.ownlab.ownlab_client.R
 import com.ownlab.ownlab_client.models.ResumeResponse
 import com.ownlab.ownlab_client.utils.ApiResponse
-import com.ownlab.ownlab_client.view.component.BorderedCenteredContentUI
 import com.ownlab.ownlab_client.view.component.CenteredImageSelector
 import com.ownlab.ownlab_client.view.component.CheckboxInput
 import com.ownlab.ownlab_client.view.component.FiveToggleButtonUI
-import com.ownlab.ownlab_client.view.component.HorizontalDivider
 import com.ownlab.ownlab_client.view.component.InputInformation
 import com.ownlab.ownlab_client.view.component.InputTextFieldUI
 import com.ownlab.ownlab_client.view.component.LazyColumSelectComponent
@@ -85,14 +82,7 @@ fun ResumeManagerScreenMain(
 ) {
     val token by tokenViewModel.token.observeAsState()
     val resumeResponse by resumeViewModel.resumeResponse.observeAsState()
-    LaunchedEffect(token) {
-        if (token == null) {
-            Log.d("토큰없음", "하이")
-        }
-        else {
-            Log.d("토큰 있음", token!!)
-        }
-    }
+
     LaunchedEffect(resumeResponse) {
         when (resumeResponse) {
             is ApiResponse.Success -> {
@@ -106,7 +96,7 @@ fun ResumeManagerScreenMain(
             is ApiResponse.Failure -> {
                 Log.d("ResumeUploadError", "Error: ${(resumeResponse as ApiResponse.Failure).code}")
                 try {
-                    val action = BoardRegisterFragmentDirections.boardRegister2ChkDialog("네트워크 연결을 확인해주세요.")
+                    val action = ResumeManagerScreenDirections.actionResumeManagerScreenToChkDialogNav2("네트워크 연결을 확인해주세요.")
                     navController.navigate(action)
                 } catch (e: IllegalArgumentException) { }
             }
@@ -180,7 +170,6 @@ fun BasicInformationSection(resumeViewModel: ResumeViewModel) {
         InputInformation(mainText = "휴대폰번호", placeholderText = "휴대폰번호를 입력하세요", textState = tel, onClick = {})
         InputInformation(mainText = "이메일", placeholderText = "이메일을 입력하세요", textState = email, onClick = {})
         InputInformation(mainText = "생년월일", placeholderText = "생년월일을 입력하세요", textState = birth, onClick = {})
-//        InputInformation(mainText = "성별", placeholderText = "성별을 입력하세요", textState = sex, onClick = {})
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
