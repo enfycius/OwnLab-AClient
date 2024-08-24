@@ -90,6 +90,10 @@ class MainActivity : AppCompatActivity() {
                     toolbarTitle.text = "이력서 관리"
                     toolbar.visibility = View.VISIBLE
                 }
+                R.id.resumeListScreen->{
+                    toolbarTitle.text="이력서"
+                    toolbar.visibility = View.VISIBLE
+                }
 
                 R.id.mainFragment -> toolbar.navigationIcon = null
                 R.id.boardFragment -> toolbar.navigationIcon = null
@@ -113,7 +117,7 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.loginFragment, R.id.regionalSettingScreen, R.id.userAgreementFragment, R.id.registerFragment, R.id.bizRegisterFragment, R.id.registerationSuccessFragment -> hideBottomNav()
+                R.id.loginFragment, R.id.regionalSettingScreen, R.id.userAgreementFragment, R.id.registerFragment, R.id.bizRegisterFragment, R.id.registerationSuccessFragment  -> hideBottomNav()
                 else -> showBottomNav()
             }
         }

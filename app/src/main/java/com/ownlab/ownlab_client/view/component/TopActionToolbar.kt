@@ -36,8 +36,7 @@ fun TopActionToolbar(navController: NavController) {
             .fillMaxWidth()
             .fillMaxHeight()
             .clickable {
-                // 여기에 클릭 시 수행할 동작 추가
-                navController.navigate(R.id.action_ownLabMainScreen_to_jobFinderScreen) // 원하는 경로로 네비게이트
+                navController.navigate(R.id.job_search_nav)
             }
     ) {
         Image(
@@ -51,7 +50,7 @@ fun TopActionToolbar(navController: NavController) {
         Box(
             modifier = Modifier
                 .height(46.dp)
-                .weight(1f) // 이걸 추가하면 Box가 남은 공간을 채우게 됩니다.
+                .weight(1f)
         ) {
             TextField(
                 value = "",

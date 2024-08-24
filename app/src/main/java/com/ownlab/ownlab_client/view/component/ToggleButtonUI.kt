@@ -16,7 +16,8 @@ fun FiveToggleButtonUI(
     secondOption: String,
     thirdOption: String,
     fourthOption: String,
-    fifthOption: String
+    fifthOption: String,
+    onOptionSelected: (String) -> Unit
 ) {
     var selectedOption by remember { mutableStateOf(firstOption) }
 
@@ -31,9 +32,18 @@ fun FiveToggleButtonUI(
                 .padding(top = 18.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            OptionItem(firstOption, selectedOption) { selectedOption = firstOption }
-            OptionItem(secondOption, selectedOption) { selectedOption = secondOption }
-            OptionItem(thirdOption, selectedOption) { selectedOption = thirdOption }
+            OptionItem(firstOption, selectedOption) {
+                selectedOption = firstOption
+                onOptionSelected(firstOption)
+            }
+            OptionItem(secondOption, selectedOption) {
+                selectedOption = secondOption
+                onOptionSelected(secondOption)
+            }
+            OptionItem(thirdOption, selectedOption) {
+                selectedOption = thirdOption
+                onOptionSelected(thirdOption)
+            }
         }
 
         Row(
@@ -42,8 +52,14 @@ fun FiveToggleButtonUI(
                 .padding(top = 18.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            OptionItem(fourthOption, selectedOption) { selectedOption = fourthOption }
-            OptionItem(fifthOption, selectedOption) { selectedOption = fifthOption }
+            OptionItem(fourthOption, selectedOption) {
+                selectedOption = fourthOption
+                onOptionSelected(fourthOption)
+            }
+            OptionItem(fifthOption, selectedOption) {
+                selectedOption = fifthOption
+                onOptionSelected(fifthOption)
+            }
         }
     }
 }
@@ -75,8 +91,86 @@ fun OptionItem(option: String, selectedOption: String, onSelect: () -> Unit) {
 }
 
 @Composable
-fun ToggleButtonUI(firstOption: String, secondOption: String) {
+fun ToggleButtonUI(
+    firstOption: String,
+    secondOption: String,
+    onOptionSelected: (String) -> Unit
+) {
     var selectedOption by remember { mutableStateOf(firstOption) }
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 18.dp, bottom = 12.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(end = 8.dp),
+                contentAlignment = Alignment.CenterStart
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Box(
+                        modifier = Modifier.size(32.dp),
+                        contentAlignment = Alignment.CenterStart
+                    ) {
+                        RadioButton(
+                            selected = selectedOption == firstOption,
+                            onClick = {
+                                selectedOption = firstOption
+                                onOptionSelected(firstOption)
+                            },
+                            colors = RadioButtonDefaults.colors(
+                                selectedColor = Color.Blue
+                            )
+                        )
+                    }
+                    Text(text = firstOption, modifier = Modifier.padding(start = 8.dp))
+                }
+            }
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 8.dp),
+                contentAlignment = Alignment.CenterStart
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Box(
+                        modifier = Modifier.size(32.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        RadioButton(
+                            selected = selectedOption == secondOption,
+                            onClick = {
+                                selectedOption = secondOption
+                                onOptionSelected(secondOption)
+                            },
+                            colors = RadioButtonDefaults.colors(
+                                selectedColor = Color.Blue
+                            )
+                        )
+                    }
+                    Text(text = secondOption, modifier = Modifier.padding(start = 8.dp))
+                }
+            }
+        }
+    }
+}
+
+
+@Composable
+fun ToggleButtonStateUI(
+    firstOption: String,
+    secondOption: String,
+    toggleState: MutableState<Boolean>
+) {
+    val selectedOption = if (toggleState.value) firstOption else secondOption
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -102,7 +196,7 @@ fun ToggleButtonUI(firstOption: String, secondOption: String) {
                     ) {
                         RadioButton(
                             selected = selectedOption == firstOption,
-                            onClick = { selectedOption = firstOption },
+                            onClick = { toggleState.value = true },
                             colors = RadioButtonDefaults.colors(
                                 selectedColor = Color.Blue
                             )
@@ -124,7 +218,7 @@ fun ToggleButtonUI(firstOption: String, secondOption: String) {
                     ) {
                         RadioButton(
                             selected = selectedOption == secondOption,
-                            onClick = { selectedOption = secondOption },
+                            onClick = { toggleState.value = false },
                             colors = RadioButtonDefaults.colors(
                                 selectedColor = Color.Blue
                             )
