@@ -15,8 +15,8 @@ android {
         applicationId "com.ownlab.ownlab_client"
         minSdk 26
         targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        versionCode 7
+        versionName "1.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -45,6 +45,7 @@ android {
 }
 
 dependencies {
+    implementation "com.google.android.play:feature-delivery:2.1.0"
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.fragment:fragment-ktx:1.6.2'
     implementation 'androidx.appcompat:appcompat:1.6.1'
