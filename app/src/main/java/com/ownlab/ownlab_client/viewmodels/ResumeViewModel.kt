@@ -18,6 +18,10 @@ import okhttp3.RequestBody
 import java.io.File
 import javax.inject.Inject
 
+data class ValidationResult(
+    val isValid: Boolean,
+    val message: String? = null
+)
 @HiltViewModel
 class ResumeViewModel @Inject constructor(
     private val resumeRepo: ResumeRepository,
@@ -83,41 +87,98 @@ class ResumeViewModel @Inject constructor(
         return Gson().fromJson(jsonString, Resume::class.java)
     }
 
-    fun addResume(token: String?, coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(_resumeResponse, coroutinesErrorHandler) {
-        val resume = Resume(
-            name.value ?: "",
-            tel.value ?: "",
-            email.value ?: "",
-            birth.value ?: "",
-            sex.value ?: "",
-            address.value ?: "",
-            resumeTitle.value ?: "",
-            school.value ?: "",
-            schoolState.value ?: "",
-            companyCareer.value ?: "",
-            partCareer.value ?: "",
-            workTime.value ?: "",
-            workStart.value ?: "",
-            workEnd.value ?: "",
-            working.value ?: false,
-            work.value ?: "",
-            sido.value ?: "",
-            sigungu.value ?: "",
-            firstWork.value ?: "",
-            secondWork.value ?: "",
-            workType.value ?: "",
-            wishWorkTerm.value ?: "",
-            wishWorkTermEtc.value ?: "",
-            wishSalaryType.value ?: "",
-            ps.value ?: "",
-            openPermission.value ?: false
-        )
+    fun addResume(token: String?, coroutinesErrorHandler: CoroutinesErrorHandler) {
+        val validationResult = validateResumeData()
 
-        Log.d("ResumeViewModel", "Resume Data: $resume")
-        Log.d("ResumeViewModel", "Profile File: ${profileFile.value?.absolutePath}")
-         val file = profileFile.value?: throw IllegalArgumentException("Profile image is required")
-        resumeRepo.addResume(token, resume, file)
+        if (!validationResult.isValid) {
+            coroutinesErrorHandler.onError(validationResult.message ?: "Unknown validation error")
+            return
+        }
+
+        if (profileFile.value == null) {
+            coroutinesErrorHandler.onError("이력서 이미지는 필수 입력 사항입니다.")
+            return
+        }
+
+        baseRequest(_resumeResponse, coroutinesErrorHandler) {
+            val resume = Resume(
+                name = name.value ?: "",
+                tel.value ?: "",
+                email.value ?: "",
+                birth.value ?: "",
+                sex.value ?: "",
+                address.value ?: "",
+                resumeTitle.value ?: "",
+                school.value ?: "",
+                schoolState.value ?: "",
+                companyCareer.value ?: "",
+                partCareer.value ?: "",
+                workTime.value ?: "",
+                workStart.value ?: "",
+                workEnd.value ?: "",
+                working.value ?: false,
+                work.value ?: "",
+                sido.value ?: "",
+                sigungu.value ?: "",
+                firstWork.value ?: "",
+                secondWork.value ?: "",
+                workType.value ?: "",
+                wishWorkTerm.value ?: "",
+                wishWorkTermEtc.value ?: "",
+                wishSalaryType.value ?: "",
+                ps.value ?: "",
+                openPermission.value ?: false
+            )
+
+            Log.d("ResumeViewModel", "Resume Data: $resume")
+            Log.d("ResumeViewModel", "Profile File: ${profileFile.value?.absolutePath}")
+            val file = profileFile.value ?: File("")
+            resumeRepo.addResume(token, resume, file)
+        }
     }
+    fun validateResumeData(): ValidationResult {
+        val name = name.value
+        val email = email.value
+        val phone = tel.value
+        val birth = birth.value
+        val sex = sex.value
+        val address = address.value
+        val resumeTitle = resumeTitle.value
+        val school = school.value
+        val schoolState = schoolState.value
+        val sido = sido.value
+        val sigungu = sigungu.value
+        val firstWork = firstWork.value
+        val secondWork = secondWork.value
+        val workType = workType.value
+        val wishWorkTerm = wishWorkTerm.value
+        val wishWorkTermEtc = wishWorkTermEtc.value
+        val wishSalaryType = wishSalaryType.value
+        val ps = ps.value
+
+        return when {
+            name.isNullOrBlank() -> ValidationResult(false, "이름은 필수 입력 사항입니다.")
+            email.isNullOrBlank() -> ValidationResult(false, "이메일은 필수 입력 사항입니다.")
+            phone.isNullOrBlank() -> ValidationResult(false, "전화번호는 필수 입력 사항입니다.")
+            birth.isNullOrBlank() -> ValidationResult(false, "생년월일은 필수 입력 사항입니다.")
+            sex.isNullOrBlank() -> ValidationResult(false, "성별은 필수 입력 사항입니다.")
+            address.isNullOrBlank() -> ValidationResult(false, "주소는 필수 입력 사항입니다.")
+            resumeTitle.isNullOrBlank() -> ValidationResult(false, "이력서 제목은 필수 입력 사항입니다.")
+            school.isNullOrBlank() -> ValidationResult(false, "학교명은 필수 입력 사항입니다.")
+            schoolState.isNullOrBlank() -> ValidationResult(false, "학교 상태는 필수 입력 사항입니다.")
+            sido.isNullOrBlank() -> ValidationResult(false, "시도는 필수 입력 사항입니다.")
+            sigungu.isNullOrBlank() -> ValidationResult(false, "시군구는 필수 입력 사항입니다.")
+            firstWork.isNullOrBlank() -> ValidationResult(false, "원하는 직종은 필수 입력 사항입니다.")
+            secondWork.isNullOrBlank() -> ValidationResult(false, "원하는 업무는 필수 입력 사항입니다.")
+            workType.isNullOrBlank() -> ValidationResult(false, "고용형태는 필수 입력 사항입니다.")
+            wishWorkTerm.isNullOrBlank() -> ValidationResult(false, "희망 근무 기간은 필수 입력 사항입니다.")
+            wishWorkTermEtc.isNullOrBlank() -> ValidationResult(false, "희망 급여 필수 입력 사항입니다.")
+            wishSalaryType.isNullOrBlank() -> ValidationResult(false, "희망 급여 유형은 필수 입력 사항입니다.")
+            ps.isNullOrBlank() -> ValidationResult(false, "자기소개서는 필수 입력 사항입니다.")
+            else -> ValidationResult(true)
+        }
+    }
+
 
 
     fun Resume.toRequestBodyMap(): Map<String, RequestBody> {
