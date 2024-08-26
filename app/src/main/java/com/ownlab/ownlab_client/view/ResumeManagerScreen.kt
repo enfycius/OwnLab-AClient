@@ -25,6 +25,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -131,16 +134,29 @@ fun ResumeManagerScreenMain(
             item{ ResumeVisibilitySection(navController) }
             item {
                 SettingBtn("등록하기") {
-                    token?.let {
-                        resumeViewModel.addResume(it, object : CoroutinesErrorHandler {
-                            override fun onError(message: String) {
-                                Log.d("Test3", message)
-                                try {
-                                    val action = BoardRegisterFragmentDirections.boardRegister2ChkDialog("네트워크 연결을 확인해주세요.")
+                    val validationResult = resumeViewModel.validateResumeData()
+                    if (validationResult.isValid) {
+                        token?.let {
+                            resumeViewModel.addResume(it, object : CoroutinesErrorHandler {
+                                override fun onError(message: String) {
+                                    Log.e("ResumeSubmissionError", message)
+                                    val action = ResumeManagerScreenDirections.actionResumeManagerScreenToChkDialogNav2("$message")
                                     navController.navigate(action)
-                                } catch (e: IllegalArgumentException) { }
-                            }
-                        })
+                                }
+                            })
+                        } ?: run {
+                            val action = ResumeManagerScreenDirections.actionResumeManagerScreenToChkDialogNav2("유효하지 않은 토큰입니다.")
+                            navController.navigate(action)
+                        }
+                    } else {
+                        val action = validationResult.message?.let {
+                            ResumeManagerScreenDirections.actionResumeManagerScreenToChkDialogNav2(
+                                it
+                            )
+                        }
+                        if (action != null) {
+                            navController.navigate(action)
+                        }
                     }
                 }
             }
