@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/ownlab_main_nav"
+        android:title="홈"
+        android:icon="@drawable/icon_bn_home_1_"
+        app:showAsAction="always"
+        app:actionLayout="@layout/menu_item_layout"/>
+
+    <item
+        android:id="@+id/board_nav"
+        android:title="검색"
+        android:icon="@drawable/icon_search"
+        app:showAsAction="always"
+        app:actionLayout="@layout/menu_item_layout"/>
+
+    <item
+        android:id="@+id/main_nav"
+        android:title="공고/지원자"
+        android:icon="@drawable/icon_bn_recruit"
+        app:showAsAction="always"
+        app:actionLayout="@layout/menu_item_layout"/>
+
+
+    <item
+        android:id="@+id/my_page_nav"
+        android:title="마이페이지"
+        android:icon="@drawable/icon_bn_mypage"
+        app:showAsAction="always"
+        app:actionLayout="@layout/menu_item_layout"/>
+</menu>

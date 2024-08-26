@@ -13,14 +13,13 @@ import com.ownlab.ownlab_client.R
 import com.ownlab.ownlab_client.databinding.FragmentLoginBinding
 import com.ownlab.ownlab_client.models.Auth
 import com.ownlab.ownlab_client.utils.ApiResponse
-
 import com.ownlab.ownlab_client.viewmodels.LoginViewModel
 import com.ownlab.ownlab_client.viewmodels.TokenViewModel
-import com.ownlab.ownlab_client.viewmodels.`interface`.CoroutinesErrorHandler
+import com.ownlab.ownlab_client.viewmodels.interfaces.CoroutinesErrorHandler
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment: Fragment() {
+class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
@@ -28,6 +27,7 @@ class LoginFragment: Fragment() {
     private val tokenViewModel: TokenViewModel by activityViewModels()
 
     private lateinit var navController: NavController
+    private var lastSelectedRadioButtonName: String = "seekerRadioButton"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
@@ -47,7 +47,7 @@ class LoginFragment: Fragment() {
         }
 
         loginViewModel.loginResponse.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is ApiResponse.Success -> {
                     tokenViewModel.save(it.data.token)
                 }
@@ -62,14 +62,21 @@ class LoginFragment: Fragment() {
             val id: String = binding.idField.text.toString()
             val password: String = binding.passwordField.text.toString()
 
-            loginViewModel.login(Auth(id, password), object: CoroutinesErrorHandler {
-                override fun onError(m : String) {
+            loginViewModel.login(Auth(id, password), object : CoroutinesErrorHandler {
+                override fun onError(m: String) {
                 }
             })
         }
 
+        binding.radioGroup.setOnCheckedChangeListener { _, checkedId ->
+            lastSelectedRadioButtonName = resources.getResourceEntryName(checkedId)
+        }
+
         binding.registerBtn.setOnClickListener {
-            navController.navigate(R.id.login_2_register)
+            val bundle = Bundle().apply {
+                putString("lastSelectedRadioButtonName", lastSelectedRadioButtonName)
+            }
+            navController.navigate(R.id.login_2_userAgreement, bundle)
         }
     }
 

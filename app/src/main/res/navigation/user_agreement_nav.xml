@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_agreement_nav"
+    app:startDestination="@id/userAgreementFragment">
+
+        <fragment
+            android:id="@+id/userAgreementFragment"
+            android:name="com.ownlab.ownlab_client.view.UserAgreementFragment"
+            android:label="회원가입"
+            tools:layout="@layout/fragment_user_agreement">
+
+                <action
+                    android:id="@+id/login_2_register"
+                    app:destination="@id/register_nav"
+                    app:popUpToInclusive="true" />
+                <action
+                    android:id="@+id/action_userAgreementFragment_to_register_nav"
+                    app:destination="@id/biz_register_nav"
+                    app:popUpToInclusive="true"/>
+
+        </fragment>
+        <include app:graph="@navigation/register_nav" />
+        <include app:graph="@navigation/biz_register_nav" />
+
+
+</navigation>

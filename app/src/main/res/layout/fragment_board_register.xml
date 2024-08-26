@@ -1,292 +1,458 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:fillViewport="true"
-        android:scrollbars="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="17dp"
+        android:layout_marginTop="350dp"
+        android:orientation="vertical"
+        app:layout_anchorGravity="center"
+        tools:ignore="MissingDefaultResource">
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="모집내용"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="9dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="공고제목"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
 
             <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                app:srcCompat="@drawable/logo_fullsize" />
-
-            <TextView
-                android:layout_height="30dp"
-                android:layout_width="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="5dp"
-                android:textStyle="bold"
-                android:text="공고 제목" />
-
-            <EditText
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:paddingLeft="10dp"
-                android:layout_gravity="center"
-                android:background="@drawable/box"
-                android:hint="공고 제목" />
-
-            <TextView
-                android:layout_height="30dp"
-                android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="5dp"
-                android:textStyle="bold"
-                android:text="근무지 주소" />
-
-            <EditText
-                android:id="@+id/address"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:paddingLeft="10dp"
-                android:layout_gravity="center"
-                android:background="@drawable/box"
-                android:hint="근무지 주소" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/line_color" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="5dp"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:text="담당자 정보" />
-
-            <TextView
-                android:layout_height="30dp"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="5dp"
-                android:textStyle="bold"
-                android:text="담당자명" />
-
-            <EditText
-                android:id="@+id/assignee"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:paddingLeft="10dp"
-                android:layout_gravity="center"
-                android:background="@drawable/box"
-                android:hint="담당자명" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="5dp"
-                android:textStyle="bold"
-                android:text="연락처" />
-
-            <EditText
-                android:id="@+id/contacts"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:paddingLeft="10dp"
-                android:layout_gravity="center"
-                android:background="@drawable/box"
-                android:hint="연락처" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="5dp"
-                android:textStyle="bold"
-                android:text="이메일" />
-
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:paddingLeft="10dp"
-                android:layout_gravity="center"
-                android:background="@drawable/box"
-                android:hint="이메일" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/line_color" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="5dp"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:text="공고 설정" />
-
-            <TextView
-                android:layout_height="30dp"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="5dp"
-                android:textStyle="bold"
-                android:text="지원방법" />
-
-            <EditText
-                android:id="@+id/registrationMethod"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:paddingLeft="10dp"
-                android:layout_gravity="center"
-                android:background="@drawable/box"
-                android:hint="지원방법 (ex. 이메일, 전화, 문자)" />
-
-            <TextView
-                android:layout_height="30dp"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="5dp"
-                android:textStyle="bold"
-                android:text="세부공고" />
-
-            <EditText
-                android:id="@+id/detailedLink"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:paddingLeft="10dp"
-                android:layout_gravity="center"
-                android:background="@drawable/box"
-                android:hint="세부링크 (ex. https://www.naver.com)\n(앞에 http:// 또는 https:// 필요)" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/line_color" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="5dp"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:text="모집기간" />
-
-            <TextView
-                android:layout_height="30dp"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="5dp"
-                android:textStyle="bold"
-                android:text="모집기간" />
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/startDateField"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:layout_gravity="left"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="50dp"
-                    android:paddingLeft="10dp"
-                    android:hint="시작일"
-                    android:enabled="false" />
-
-                <ImageButton
-                    android:id="@+id/startDateBtn"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="right"
-                    android:background="@drawable/calendar" />
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/endDateField"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:layout_gravity="left"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="50dp"
-                    android:paddingLeft="10dp"
-                    android:hint="종료일"
-                    android:enabled="false" />
-
-                <ImageButton
-                    android:id="@+id/endDateBtn"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="right"
-                    android:background="@drawable/calendar" />
-
-            </FrameLayout>
-
-            <Button
-                android:id="@+id/registerBtn"
-                android:layout_height="50dp"
-                android:layout_width="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/button"
-                android:text="등록하기"
-                android:textColor="@color/white" />
-
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_brightness_1_24"
+                app:tint="@color/light_red" />
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/box"
+            android:hint="공고 제목"
+            android:textSize="14sp"
+            android:paddingLeft="10dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="9dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="근무지 주소"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_brightness_1_24"
+                app:tint="@color/light_red" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/box"
+            android:hint="근무지 주소"
+            android:textSize="14sp"
+            android:paddingLeft="10dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/line_color" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="담당자 정보"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="9dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="담당자명"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_brightness_1_24"
+                app:tint="@color/light_red" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/assignee"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/box"
+            android:hint="담당자명"
+            android:textSize="14sp"
+            android:paddingLeft="10dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="9dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="연락처"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_brightness_1_24"
+                app:tint="@color/light_red" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/contacts"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/box"
+            android:hint="연락처"
+            android:textSize="14sp"
+            android:paddingLeft="10dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="9dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이메일"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_brightness_1_24"
+                app:tint="@color/light_red" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/box"
+            android:hint="이메일"
+            android:textSize="14sp"
+            android:paddingLeft="10dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/line_color" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="공고설정"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="9dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="지원방법"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_brightness_1_24"
+                app:tint="@color/light_red" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/registrationMethod"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/box"
+            android:hint="지원방법 (ex. 이메일, 전화, 문자)"
+            android:textSize="14sp"
+            android:paddingLeft="10dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="9dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="세부공고"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_brightness_1_24"
+                app:tint="@color/light_red" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/detailedLink"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:background="@drawable/box"
+            android:hint="세부링크 (ex. https://www.naver.com)\n(앞에 http:// 또는 https:// 필요)"
+            android:textSize="14sp"
+            android:paddingLeft="10dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/line_color" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="모집기간"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="9dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="모집기간"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_brightness_1_24"
+                app:tint="@color/light_red" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <!-- 시작일 EditText -->
+            <EditText
+                android:id="@+id/startDateField"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_marginEnd="5dp"
+                android:hint="시작일"
+                android:paddingLeft="10dp"
+                android:textSize="14sp"
+                android:background="@drawable/box"
+                app:layout_constraintEnd_toStartOf="@id/endDateField"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- 종료일 EditText -->
+            <EditText
+                android:id="@+id/endDateField"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="5dp"
+                android:hint="종료일"
+                android:paddingLeft="10dp"
+                android:textSize="14sp"
+                android:background="@drawable/box"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/startDateField"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/startDateBtn"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/icon_calendar"
+                app:layout_constraintEnd_toEndOf="@id/startDateField"
+                app:layout_constraintTop_toTopOf="@id/startDateField" />
+
+            <ImageButton
+                android:id="@+id/endDateBtn"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/icon_calendar"
+                app:layout_constraintEnd_toEndOf="@id/endDateField"
+                app:layout_constraintTop_toTopOf="@id/endDateField" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="모집인원"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="9dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="모집인원"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_brightness_1_24"
+                app:tint="@color/light_red" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <!-- 시작일 EditText -->
+            <EditText
+                android:id="@+id/limitation"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginEnd="5dp"
+                android:hint="모집인원(명)"
+                android:paddingLeft="10dp"
+                android:textSize="14sp"
+                android:background="@drawable/box"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/registerBtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/button"
+            android:text="등록하기"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
 </ScrollView>

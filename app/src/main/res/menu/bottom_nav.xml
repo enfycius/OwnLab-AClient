@@ -1,13 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
-        android:id="@+id/main_nav"
-        android:icon="@drawable/home"
-        android:title="Home" />
+        android:id="@+id/ownlab_main_nav"
+        android:title="홈"
+        android:icon="@drawable/icon_bn_home_1_"
+        app:showAsAction="always"
+        app:actionLayout="@layout/menu_item_layout"/>
+
+    <item
+        android:id="@+id/job_search_nav"
+        android:title="검색"
+        android:icon="@drawable/icon_search"
+        app:showAsAction="always"
+        app:actionLayout="@layout/menu_item_layout"/>
 
     <item
         android:id="@+id/board_nav"
-        android:icon="@drawable/home"
-        android:title="게시판" />
+        android:title="공고/지원자"
+        android:icon="@drawable/icon_bn_recruit"
+        app:showAsAction="always"
+        app:actionLayout="@layout/menu_item_layout"/>
 
+    <item
+        android:id="@+id/main_nav"
+        android:title="내역량지표"
+        android:icon="@drawable/icon_bn_ai"
+        app:showAsAction="always"
+        app:actionLayout="@layout/menu_item_layout"/>
+
+<!--    <item-->
+<!--        android:id="@+id/job_applicant_nav"-->
+<!--        android:title="스크랩공고"-->
+<!--        android:icon="@drawable/icon_bn_recruit"-->
+<!--        app:showAsAction="always"-->
+<!--        app:actionLayout="@layout/menu_item_layout"/>-->
+
+    <item
+        android:id="@+id/my_page_nav"
+        android:title="마이페이지"
+        android:icon="@drawable/icon_bn_mypage"
+        app:showAsAction="always"
+        app:actionLayout="@layout/menu_item_layout"/>
 </menu>

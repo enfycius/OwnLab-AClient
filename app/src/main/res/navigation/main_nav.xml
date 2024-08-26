@@ -46,5 +46,8 @@
     <include app:graph="@navigation/radar_nav" />
     <include app:graph="@navigation/board_nav" />
     <include app:graph="@navigation/chk_dialog_nav" />
+    <include app:graph="@navigation/my_page_nav"/>
+    <include app:graph="@navigation/home_screen_nav" />
+    <include app:graph="@navigation/job_search_nav" />
 
 </navigation>

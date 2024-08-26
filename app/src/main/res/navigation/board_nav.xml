@@ -27,8 +27,38 @@
             android:id="@+id/board_2_board_register"
             app:destination="@id/board_register_nav"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_boardFragment_to_applicantManagementFragment2"
+            app:destination="@id/applicantManagementFragment2" />
+        <action
+            android:id="@+id/action_boardFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
 
     <include app:graph="@navigation/chk_dialog_nav" />
     <include app:graph="@navigation/board_register_nav" />
+    <fragment
+        android:id="@+id/applicantManagementFragment2"
+        android:name="com.ownlab.ownlab_client.view.ApplicantManagementFragment"
+        android:label="ApplicantManagementFragment" >
+        <action
+            android:id="@+id/action_applicantManagementFragment2_to_boardFragment"
+            app:destination="@id/boardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.ownlab.ownlab_client.view.DetailFragment"
+        android:label="DetailFragment">
+        <argument
+            android:name="postItem"
+            app:argType="com.ownlab.ownlab_client.models.PostItem" />
+        <action
+            android:id="@+id/action_detailFragment_to_chk_dialog_nav"
+            app:destination="@id/chk_dialog_nav" >
+            <argument
+                android:name="chkMessage"
+                app:argType="string"
+                android:defaultValue="" />
+        </action>
+    </fragment>
 </navigation>

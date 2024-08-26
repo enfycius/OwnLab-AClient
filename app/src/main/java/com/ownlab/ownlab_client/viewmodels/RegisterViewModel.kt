@@ -7,7 +7,7 @@ import com.ownlab.ownlab_client.models.Info
 import com.ownlab.ownlab_client.models.RegisterResponse
 import com.ownlab.ownlab_client.repository.AuthRepository
 import com.ownlab.ownlab_client.utils.ApiResponse
-import com.ownlab.ownlab_client.viewmodels.`interface`.CoroutinesErrorHandler
+import com.ownlab.ownlab_client.viewmodels.interfaces.CoroutinesErrorHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -23,7 +23,11 @@ class RegisterViewModel @Inject constructor (private val authRepo: AuthRepositor
         authRepo.idChk(id)
     }
 
-    fun register(info: Info, coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(registerResponse, coroutinesErrorHandler) {
-        authRepo.register(info)
+    fun registerMember(info: Info, coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(registerResponse, coroutinesErrorHandler) {
+        authRepo.registerMember(info)
+    }
+
+    fun registerCompany(info: Info, coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(registerResponse, coroutinesErrorHandler){
+        authRepo.registerCompany(info)
     }
 }

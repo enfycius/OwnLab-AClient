@@ -38,7 +38,7 @@ class RadarView(context: Context?, attrs: AttributeSet?) : View(context, attrs) 
 
     private var path = Path()
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas ?: return
 

@@ -13,9 +13,8 @@ import com.ownlab.ownlab_client.databinding.FragmentRegisterBinding
 import com.ownlab.ownlab_client.models.Id
 import com.ownlab.ownlab_client.models.Info
 import com.ownlab.ownlab_client.utils.ApiResponse
-
 import com.ownlab.ownlab_client.viewmodels.RegisterViewModel
-import com.ownlab.ownlab_client.viewmodels.`interface`.CoroutinesErrorHandler
+import com.ownlab.ownlab_client.viewmodels.interfaces.CoroutinesErrorHandler
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -74,7 +73,7 @@ class RegisterFragment: Fragment() {
 
                     } else {
                         try {
-                            navController.navigate(R.id.register_2_login)
+                            navController.navigate(R.id.register_2_registeration_success)
                         } catch (e: IllegalArgumentException) { }
                     }
                 }
@@ -113,7 +112,7 @@ class RegisterFragment: Fragment() {
                     navController.navigate(action)
                 } catch (e: IllegalArgumentException) { }
             } else {
-                registerViewModel.register(Info(id, password, name, tel), object: CoroutinesErrorHandler {
+                registerViewModel.registerMember(Info(id, password, name, tel), object: CoroutinesErrorHandler {
                     override fun onError(m : String) {
                         try {
                             val action =

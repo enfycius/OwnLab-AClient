@@ -7,9 +7,11 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import androidx.datastore.preferences.core.Preferences
+import com.ownlab.ownlab_client.service.ApplicantManagementApi
 import com.ownlab.ownlab_client.service.AuthApi
 import com.ownlab.ownlab_client.service.BoardApi
 import com.ownlab.ownlab_client.service.MainApi
+import com.ownlab.ownlab_client.service.ResumeApi
 import com.ownlab.ownlab_client.utils.Auth.AuthAuthenticator
 import com.ownlab.ownlab_client.utils.Auth.AuthInterceptor
 import com.ownlab.ownlab_client.utils.Manager
@@ -69,6 +71,21 @@ class SingleModule {
 
     @Singleton
     @Provides
+    fun provideApplicantManagementAPI(retrofit: Retrofit.Builder): ApplicantManagementApi =
+        retrofit
+            .build()
+            .create(ApplicantManagementApi::class.java)
+
+    @Singleton
+    @Provides
+    fun provideResumeApi(retrofit: Retrofit.Builder): ResumeApi =
+        retrofit
+            .build()
+            .create(ResumeApi::class.java)
+
+
+    @Singleton
+    @Provides
     fun provideAuthAuthenticator(tokenManager: Manager): AuthAuthenticator =
         AuthAuthenticator(tokenManager)
 
@@ -82,5 +99,6 @@ class SingleModule {
     fun provideRetrofitBuilder(): Retrofit.Builder =
         Retrofit.Builder()
             .baseUrl("https://albahr.co.kr/api/")
+//            .baseUrl("http://youhyeok.com:8005/")
             .addConverterFactory(GsonConverterFactory.create())
 }

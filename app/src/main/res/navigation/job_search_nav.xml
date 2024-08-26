@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource"
+    android:id="@+id/job_search_nav"
+    app:startDestination="@id/jobFinderScreen">
+
+    <fragment
+        android:id="@+id/jobFinderScreen"
+        android:name="com.ownlab.ownlab_client.view.JobFinderScreen"
+        android:label="JobFinderScreen" />
+</navigation>

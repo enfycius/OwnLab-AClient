@@ -18,13 +18,18 @@
 
             <argument
                 android:name="chkMessage"
-                app:argType="string"
-                android:defaultValue="" />
+                android:defaultValue=""
+                app:argType="string" />
 
         </action>
+        <action
+            android:id="@+id/register_2_registeration_success"
+            app:destination="@id/registeration_success_nav"
+            app:popUpToInclusive="true" />
 
     </fragment>
 
     <include app:graph="@navigation/chk_dialog_nav" />
+    <include app:graph="@navigation/registeration_success_nav" />
 
 </navigation>
