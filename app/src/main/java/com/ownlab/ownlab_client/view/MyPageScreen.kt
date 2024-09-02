@@ -160,7 +160,7 @@ fun MyPageScreen(navController: NavController) {
             .fillMaxSize()
             .padding(16.dp),
     ) {
-        MyProfile(name = "알바 HR", userType="기업 회원", imagePainter = profileImage)
+//        MyProfile(name = "알바 HR", userType="기업 회원", imagePainter = profileImage)
         MainTitle(title = "My")
         ProfileChoice(mainText = "이력서 작성") {
             navController.navigate(R.id.action_myPageScreen_to_resumeManagerScreen)

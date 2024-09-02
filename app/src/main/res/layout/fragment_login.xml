@@ -129,28 +129,28 @@
 
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="8dp"
-        android:layout_marginHorizontal="25dp">
-        <CheckBox
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/background_checkbox"
-            android:button="@null"
-            android:layout_weight="1"
-            android:checked="false"
-            android:enabled="true"
-            android:textColor="@color/black" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:text="자동 로그인"/>
+<!--    <LinearLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginHorizontal="25dp">-->
+<!--        <CheckBox-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:background="@drawable/background_checkbox"-->
+<!--            android:button="@null"-->
+<!--            android:layout_weight="1"-->
+<!--            android:checked="false"-->
+<!--            android:enabled="true"-->
+<!--            android:textColor="@color/black" />-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="3dp"-->
+<!--            android:text="자동 로그인"/>-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -159,35 +159,35 @@
         android:layout_marginTop="18dp"
         android:layout_gravity="center">
 
-        <Button
-            android:id="@+id/btnFindId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:textColor="@color/sub_text_color"
-            android:text="아이디 찾기" />
-        <View
-            android:layout_width="1dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:layout_margin="7dp"
-            android:background="@color/gray200"/>
+<!--        <Button-->
+<!--            android:id="@+id/btnFindId"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:textColor="@color/sub_text_color"-->
+<!--            android:text="아이디 찾기" />-->
+<!--        <View-->
+<!--            android:layout_width="1dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_margin="7dp"-->
+<!--            android:background="@color/gray200"/>-->
 
-        <Button
-            android:id="@+id/btnFindPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:textColor="@color/sub_text_color"
-            android:text="비밀번호 찾기" />
-        <View
-            android:layout_width="1dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:layout_margin="7dp"
-            android:background="@color/gray200"/>
+<!--        <Button-->
+<!--            android:id="@+id/btnFindPassword"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:textColor="@color/sub_text_color"-->
+<!--            android:text="비밀번호 찾기" />-->
+<!--        <View-->
+<!--            android:layout_width="1dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_margin="7dp"-->
+<!--            android:background="@color/gray200"/>-->
 
         <Button
             android:id="@+id/registerBtn"
@@ -201,42 +201,42 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="18dp"
-        android:gravity="center_horizontal">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginTop="18dp"-->
+<!--        android:gravity="center_horizontal">-->
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/kakao_login"
-            android:layout_marginRight="22dp"/>
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/kakao_login"-->
+<!--            android:layout_marginRight="22dp"/>-->
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/naver_login"
-            android:layout_marginRight="22dp"/>
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/naver_login"-->
+<!--            android:layout_marginRight="22dp"/>-->
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/apple_login"
-            android:layout_marginRight="22dp"/>
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/apple_login"-->
+<!--            android:layout_marginRight="22dp"/>-->
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/google_login"
-            android:layout_marginRight="22dp"/>
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/google_login"-->
+<!--            android:layout_marginRight="22dp"/>-->
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/facebook_login"/>
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/facebook_login"/>-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
 </LinearLayout>
