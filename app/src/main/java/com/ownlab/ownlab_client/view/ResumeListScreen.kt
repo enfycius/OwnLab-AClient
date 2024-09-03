@@ -95,7 +95,7 @@ fun ResumeListContent(resumes: List<Resume>) {
 fun ResumeDetailContent(resume: Resume) {
     Column() {
         Text(
-            text = "이력서 제목: ${resume.resumeTitle}",
+            text = "이력서 제목: ${resume.resumeTitle}${resume.wishSalaryType}",
             style = MaterialTheme.typography.h5.copy(
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold
